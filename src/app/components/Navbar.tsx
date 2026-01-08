@@ -43,7 +43,7 @@ export default function Navbar() {
             </Link>
             <LanguageSwitcher />
             <Link
-              href="/api/auth/signin"
+              href="/pricing"
               className="px-4 py-2 text-sm rounded-lg bg-orange-600 hover:bg-orange-500 text-white transition-colors"
             >
               {t("login")}
