@@ -83,5 +83,17 @@
   "warning": {
     "title": "Important reminder",
     "message": "Reddit hates marketing. This tool helps you write authentic posts focused on sharing experience and asking for feedback."
+  },
+  "login": {
+    "title": "Login",
+    "subtitle": "Enter your email to receive your access link.",
+    "emailLabel": "Your email",
+    "sendLink": "Send link",
+    "sending": "Sending...",
+    "emailSent": "Email sent!",
+    "checkInbox": "Check your inbox and click the link to access the app.",
+    "tryAgain": "Try again",
+    "noAccount": "No access yet?",
+    "buyAccess": "Buy access"
   }
 }

@@ -83,5 +83,17 @@
   "warning": {
     "title": "Rappel important",
     "message": "Reddit deteste le marketing. Cet outil vous aide a formuler des posts authentiques axes sur le partage d'experience et la demande de feedback."
+  },
+  "login": {
+    "title": "Connexion",
+    "subtitle": "Entrez votre email pour recevoir votre lien d'acces.",
+    "emailLabel": "Votre email",
+    "sendLink": "Envoyer le lien",
+    "sending": "Envoi en cours...",
+    "emailSent": "Email envoye !",
+    "checkInbox": "Verifiez votre boite mail et cliquez sur le lien pour acceder a l'app.",
+    "tryAgain": "Reessayer",
+    "noAccount": "Pas encore d'acces ?",
+    "buyAccess": "Acheter un acces"
   }
 }
