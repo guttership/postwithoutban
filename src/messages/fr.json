@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "pricing": "Tarifs",
+    "demo": "Demo",
+    "login": "Connexion"
+  },
+  "hero": {
+    "tagline": "Know where to post. Know what to say. Don't get banned.",
+    "title": "Arretez de deviner ou poster sur Reddit.",
+    "subtitle": "PostWithoutBan vous dit ou, comment et quoi poster — sans vous faire bannir.",
+    "cta": "Essayer gratuitement",
+    "ctaSecondary": "Voir les tarifs"
+  },
+  "features": {
+    "title": "Comment ca fonctionne",
+    "feature1": {
+      "title": "Analysez votre SaaS",
+      "description": "Entrez l'URL de votre site et laissez l'IA comprendre votre produit et votre audience."
+    },
+    "feature2": {
+      "title": "Obtenez des subreddits cibles",
+      "description": "Recevez une liste de subreddits pertinents avec leur niveau de risque et l'angle recommande."
+    },
+    "feature3": {
+      "title": "Posts prets a publier",
+      "description": "Obtenez des posts rediges naturellement, sans langage marketing, prets a copier-coller."
+    }
+  },
+  "pricing": {
+    "title": "Un prix simple, acces a vie",
+    "subtitle": "Pas d'abonnement, pas de frais caches. Payez une fois, utilisez pour toujours.",
+    "price": "29",
+    "currency": "EUR",
+    "period": "a vie",
+    "cta": "Obtenir l'acces a vie",
+    "features": [
+      "Analyses illimitees",
+      "Tous les subreddits",
+      "Posts generes par IA",
+      "Mises a jour futures incluses",
+      "Support par email"
+    ]
+  },
+  "demo": {
+    "title": "Essayez gratuitement",
+    "subtitle": "Testez l'outil avec une analyse gratuite. Aucune carte requise.",
+    "limit": "1 analyse gratuite par jour",
+    "upgradePrompt": "Vous avez atteint la limite gratuite",
+    "upgradeCta": "Passer a la version complete"
+  },
+  "form": {
+    "urlLabel": "URL du site SaaS",
+    "urlPlaceholder": "https://votre-saas.com",
+    "descriptionLabel": "Description du produit (optionnel)",
+    "descriptionPlaceholder": "Decrivez brievement votre produit...",
+    "submit": "Analyser et generer la strategie",
+    "loading": "Analyse en cours...",
+    "required": "L'URL du site SaaS est requise",
+    "invalidUrl": "Veuillez entrer une URL valide",
+    "error": "Une erreur est survenue. Veuillez reessayer."
+  },
+  "results": {
+    "websiteAnalysis": "Analyse du site",
+    "coreProblem": "Probleme principal resolu",
+    "targetAudience": "Audience cible",
+    "maturityLevel": "Niveau de maturite",
+    "subreddits": "Subreddits recommandes",
+    "relevance": "Pertinence",
+    "risk": "Risque",
+    "recommendedAngle": "Angle recommande",
+    "redditPost": "Post Reddit pret a publier",
+    "copy": "Copier le post",
+    "copied": "Copie",
+    "estimates": "Estimations realistes",
+    "clicks": "Clics attendus",
+    "comments": "Commentaires attendus"
+  },
+  "footer": {
+    "tagline": "Reddit posts that survive moderation.",
+    "disclaimer": "Because Reddit hates your pitch."
+  },
+  "warning": {
+    "title": "Rappel important",
+    "message": "Reddit deteste le marketing. Cet outil vous aide a formuler des posts authentiques axes sur le partage d'experience et la demande de feedback."
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "home": "Home",
+    "pricing": "Pricing",
+    "demo": "Demo",
+    "login": "Login"
+  },
+  "hero": {
+    "tagline": "Know where to post. Know what to say. Don't get banned.",
+    "title": "Stop guessing where to post on Reddit.",
+    "subtitle": "PostWithoutBan tells you where, how, and what to post — without getting banned.",
+    "cta": "Try for free",
+    "ctaSecondary": "See pricing"
+  },
+  "features": {
+    "title": "How it works",
+    "feature1": {
+      "title": "Analyze your SaaS",
+      "description": "Enter your website URL and let AI understand your product and audience."
+    },
+    "feature2": {
+      "title": "Get targeted subreddits",
+      "description": "Receive a list of relevant subreddits with risk levels and recommended angles."
+    },
+    "feature3": {
+      "title": "Ready-to-post content",
+      "description": "Get naturally written posts without marketing language, ready to copy-paste."
+    }
+  },
+  "pricing": {
+    "title": "Simple pricing, lifetime access",
+    "subtitle": "No subscription, no hidden fees. Pay once, use forever.",
+    "price": "29",
+    "currency": "EUR",
+    "period": "lifetime",
+    "cta": "Get lifetime access",
+    "features": [
+      "Unlimited analyses",
+      "All subreddits",
+      "AI-generated posts",
+      "Future updates included",
+      "Email support"
+    ]
+  },
+  "demo": {
+    "title": "Try for free",
+    "subtitle": "Test the tool with a free analysis. No credit card required.",
+    "limit": "1 free analysis per day",
+    "upgradePrompt": "You've reached the free limit",
+    "upgradeCta": "Upgrade to full version"
+  },
+  "form": {
+    "urlLabel": "SaaS website URL",
+    "urlPlaceholder": "https://your-saas.com",
+    "descriptionLabel": "Product description (optional)",
+    "descriptionPlaceholder": "Briefly describe your product...",
+    "submit": "Analyze and generate strategy",
+    "loading": "Analyzing...",
+    "required": "SaaS website URL is required",
+    "invalidUrl": "Please enter a valid URL",
+    "error": "An error occurred. Please try again."
+  },
+  "results": {
+    "websiteAnalysis": "Website Analysis",
+    "coreProblem": "Core problem solved",
+    "targetAudience": "Target audience",
+    "maturityLevel": "Maturity level",
+    "subreddits": "Recommended subreddits",
+    "relevance": "Relevance",
+    "risk": "Risk",
+    "recommendedAngle": "Recommended angle",
+    "redditPost": "Ready-to-post Reddit content",
+    "copy": "Copy post",
+    "copied": "Copied",
+    "estimates": "Realistic estimates",
+    "clicks": "Expected clicks",
+    "comments": "Expected comments"
+  },
+  "footer": {
+    "tagline": "Reddit posts that survive moderation.",
+    "disclaimer": "Because Reddit hates your pitch."
+  },
+  "warning": {
+    "title": "Important reminder",
+    "message": "Reddit hates marketing. This tool helps you write authentic posts focused on sharing experience and asking for feedback."
+  }
+}
