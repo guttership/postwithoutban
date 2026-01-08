@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Mail, Loader2, CheckCircle, XCircle } from "lucide-react";
 import Navbar from "../components/Navbar";
 
 export default function LoginPage() {
   const t = useTranslations();
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -28,6 +30,11 @@ export default function LoginPage() {
       const data = await response.json();
       
       if (response.ok) {
+        // Si c'est un admin, redirection directe
+        if (data.isAdmin && data.redirect) {
+          router.push(data.redirect);
+          return;
+        }
         setStatus("success");
         setMessage(data.message || "Email envoyé !");
       } else {

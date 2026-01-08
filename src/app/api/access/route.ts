@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+// Liste des emails admin (séparés par des virgules dans .env)
+function isAdmin(email: string): boolean {
+  const adminEmails = process.env.ADMIN_EMAILS?.split(",").map(e => e.trim().toLowerCase()) || [];
+  return adminEmails.includes(email.toLowerCase());
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { token } = await request.json();
@@ -65,9 +71,19 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// GET: Vérifier si l'utilisateur a un cookie valide
+// GET: Vérifier si l'utilisateur a un cookie valide ou est admin
 export async function GET(request: NextRequest) {
   try {
+    // Vérifier d'abord le cookie admin
+    const adminEmail = request.cookies.get("pwb_admin")?.value;
+    if (adminEmail && isAdmin(adminEmail)) {
+      return NextResponse.json({
+        valid: true,
+        email: adminEmail,
+        isAdmin: true,
+      });
+    }
+
     const token = request.cookies.get("pwb_access")?.value;
 
     if (!token) {
@@ -85,6 +101,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       valid: true,
       email: purchase.email,
+      isAdmin: isAdmin(purchase.email),
     });
   } catch (error) {
     console.error("Access check error:", error);
