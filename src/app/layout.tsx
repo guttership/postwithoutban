@@ -24,6 +24,9 @@ export const metadata: Metadata = {
   authors: [{ name: "design-moi un mouton", url: "https://dmum.eu" }],
   creator: "PostWithoutBan",
   metadataBase: new URL("https://postwithoutban.com"),
+  verification: {
+    google: "usGyLjBmwc9CIkwLiVPVpxsCH2YbX3TEnHMvIUpPxGQ",
+  },
   robots: {
     index: true,
     follow: true,
