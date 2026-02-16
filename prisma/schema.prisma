@@ -78,6 +78,9 @@ model Purchase {
   
   // Tracking des sessions pour détection du partage
   activeSessions  ActiveSession[]
+  
+  // Connexion Reddit OAuth
+  redditAccount   RedditAccount?
 
   @@index([email])
   @@index([accessToken])
@@ -101,4 +104,25 @@ model ActiveSession {
   
   @@index([purchaseId])
   @@index([deviceHash])
+}
+
+// Modèle pour stocker les infos Reddit OAuth
+model RedditAccount {
+  id              String   @id @default(cuid())
+  accessToken     String   @unique
+  refreshToken    String?
+  username        String   @unique
+  redditId        String   @unique
+  expiresAt       DateTime
+  scope           String   // Permissions accordées
+  
+  // Lien avec Purchase
+  purchaseId      String   @unique
+  purchase        Purchase @relation(fields: [purchaseId], references: [id], onDelete: Cascade)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([purchaseId])
+  @@index([redditId])
 }
