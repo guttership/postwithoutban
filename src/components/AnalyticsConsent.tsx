@@ -31,16 +31,15 @@ function getGtag(): ((...args: unknown[]) => void) | null {
 
 export default function AnalyticsConsent() {
   const t = useTranslations("consent");
-  const [consent, setConsent] = useState<ConsentState>(() => {
-    if (typeof document === "undefined") {
-      return "unknown";
-    }
+  const [consent, setConsent] = useState<ConsentState>("unknown");
+
+  // Lire le cookie côté client après le montage
+  useEffect(() => {
     const saved = getCookieValue(CONSENT_COOKIE);
     if (saved === "granted" || saved === "denied") {
-      return saved;
+      setConsent(saved);
     }
-    return "unknown";
-  });
+  }, []);
 
   const handleAccept = () => {
     setCookie(CONSENT_COOKIE, "granted", 365);
