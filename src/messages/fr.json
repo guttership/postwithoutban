@@ -24,21 +24,21 @@
     },
     "feature3": {
       "title": "La stratégie par subreddit",
-      "description": "r/indiehackers accepte les Feedback Friday. r/SaaS veut du technique. r/webdev préfère le tutorial. PostWithoutBan le sait."
+      "description": "r/indiehackers accepte les Feedback Friday. r/SaaS veut du technique. r/webdev préfère le tutoriel. PostWithoutBan le sait."
     }
   },
   "pricing": {
-    "title": "Un prix simple, acces a vie",
-    "subtitle": "Pas d'abonnement, pas de frais caches. Payez une fois, utilisez pour toujours.",
+    "title": "Un prix simple, accès à vie",
+    "subtitle": "Pas d'abonnement, pas de frais cachés. Payez une fois, utilisez pour toujours.",
     "price": "99",
     "currency": "EUR",
-    "period": "a vie",
-    "cta": "Obtenir l'acces a vie",
+    "period": "à vie",
+    "cta": "Obtenir l'accès à vie",
     "features": [
-      "Analyses illimitees",
+      "Analyses illimitées",
       "Tous les subreddits",
-      "Posts generes par IA",
-      "Mises a jour futures incluses",
+      "Posts générés par IA",
+      "Mises à jour futures incluses",
       "Support par email"
     ]
   },
@@ -47,102 +47,102 @@
     "subtitle": "Testez l'outil avec une analyse gratuite. Aucune carte requise.",
     "limit": "1 analyse gratuite par jour",
     "upgradePrompt": "Vous avez atteint la limite gratuite",
-    "upgradeCta": "Passer a la version complete"
+    "upgradeCta": "Passer à la version complète"
   },
   "form": {
     "urlLabel": "URL du site SaaS",
     "urlPlaceholder": "https://votre-saas.com",
     "descriptionLabel": "Description du produit (optionnel)",
-    "descriptionPlaceholder": "Decrivez brievement votre produit...",
-    "submit": "Analyser et generer la strategie",
+    "descriptionPlaceholder": "Décrivez brièvement votre produit...",
+    "submit": "Analyser et générer la stratégie",
     "loading": "Analyse en cours...",
     "required": "L'URL du site SaaS est requise",
     "invalidUrl": "Veuillez entrer une URL valide",
-    "error": "Une erreur est survenue. Veuillez reessayer."
+    "error": "Une erreur est survenue. Veuillez réessayer."
   },
   "results": {
     "websiteAnalysis": "Analyse du site",
-    "coreProblem": "Probleme principal resolu",
+    "coreProblem": "Problème principal résolu",
     "targetAudience": "Audience cible",
-    "maturityLevel": "Niveau de maturite",
-    "subreddits": "Subreddits recommandes",
+    "maturityLevel": "Niveau de maturité",
+    "subreddits": "Subreddits recommandés",
     "relevance": "Pertinence",
     "risk": "Risque",
-    "recommendedAngle": "Angle recommande",
-    "redditPost": "Post Reddit pret a publier",
+    "recommendedAngle": "Angle recommandé",
+    "redditPost": "Post Reddit prêt à publier",
     "copy": "Copier le post",
     "copied": "Copie",
-    "estimates": "Estimations realistes",
+    "estimates": "Estimations réalistes",
     "clicks": "Clics attendus",
     "comments": "Commentaires attendus"
   },
   "footer": {
-    "tagline": "Reddit posts that survive moderation.",
-    "disclaimer": "Because Reddit hates your pitch."
+    "tagline": "Des posts Reddit qui survivent à la modération.",
+    "disclaimer": "Parce que Reddit déteste votre pitch."
   },
   "warning": {
     "title": "Rappel important",
-    "message": "Reddit deteste le marketing. Cet outil vous aide a formuler des posts authentiques axes sur le partage d'experience et la demande de feedback."
+    "message": "Reddit déteste le marketing. Cet outil vous aide à formuler des posts authentiques axés sur le partage d'expérience et la demande de feedback."
   },
   "login": {
     "title": "Connexion",
-    "subtitle": "Entrez votre email pour recevoir votre lien d'acces.",
+    "subtitle": "Entrez votre email pour recevoir votre lien d'accès.",
     "emailLabel": "Votre email",
     "sendLink": "Envoyer le lien",
     "sending": "Envoi en cours...",
-    "emailSent": "Email envoye !",
-    "checkInbox": "Verifiez votre boite mail et cliquez sur le lien pour acceder a l'app.",
-    "tryAgain": "Reessayer",
-    "noAccount": "Pas encore d'acces ?",
-    "buyAccess": "Acheter un acces"
+    "emailSent": "Email envoyé !",
+    "checkInbox": "Vérifiez votre boîte mail et cliquez sur le lien pour accéder à l'app.",
+    "tryAgain": "Réessayer",
+    "noAccount": "Pas encore d'accès ?",
+    "buyAccess": "Acheter un accès"
   },
   "legal": {
     "privacy": {
-      "title": "Politique de confidentialite",
-      "lastUpdated": "Derniere mise a jour",
+      "title": "Politique de confidentialité",
+      "lastUpdated": "Dernière mise à jour",
       "section1": {
         "title": "1. Collecte d'informations",
-        "content": "Nous collectons les donnees personnelles que vous fournissez volontairement, notamment votre adresse email lors de la creation d'un compte ou de l'achat d'un acces. Nous n'utilisons pas de trackers publicitaires. Vercel collecte automatiquement votre adresse IP et votre localisation pour assurer le bon fonctionnement du service."
+        "content": "Nous collectons les données personnelles que vous fournissez volontairement, notamment votre adresse email lors de la création d'un compte ou de l'achat d'un accès. Nous n'utilisons pas de trackers publicitaires. Vercel collecte automatiquement votre adresse IP et votre localisation pour assurer le bon fonctionnement du service."
       },
       "section2": {
         "title": "2. Utilisation des donnees",
-        "content": "Vos donnees sont utilisees pour: envoyer votre lien d'acces par email, assurer le fonctionnement du service, et vous contacter en cas de besoin technique. Nous ne vendons jamais vos donnees a des tiers."
+        "content": "Vos données sont utilisées pour: envoyer votre lien d'accès par email, assurer le fonctionnement du service, et vous contacter en cas de besoin technique. Nous ne vendons jamais vos données à des tiers."
       },
       "section3": {
         "title": "3. Securite",
-        "content": "Vos donnees sont stocKees de maniere securisee dans notre base de donnees SQLite. Les paiements sont traites de maniere 100% securisee par Stripe, sans que nous ayons acces aux donnees bancaires."
+        "content": "Vos données sont stockées de manière sécurisée dans notre base de données SQLite. Les paiements sont traités de manière 100% sécurisée par Stripe, sans que nous ayons accès aux données bancaires."
       },
       "section4": {
         "title": "4. RGPD",
-        "content": "Vous avez le droit d'acceder, modifier ou supprimer vos donnees personnelles. Contactez-nous a designmoiunmouton@gmail.com pour exercer vos droits."
+        "content": "Vous avez le droit d'accéder, modifier ou supprimer vos données personnelles. Contactez-nous à designmoiunmouton@gmail.com pour exercer vos droits."
       },
       "section5": {
         "title": "5. Cookies",
-        "content": "Nous utilisons un cookie nomme 'locale' pour memoriser votre choix de langue. Aucun cookie de suivi n'est implante."
+        "content": "Nous utilisons un cookie nommé 'locale' pour mémoriser votre choix de langue. Aucun cookie de suivi n'est implanté."
       }
     },
     "terms": {
       "title": "Conditions d'utilisation",
-      "lastUpdated": "Derniere mise a jour",
+      "lastUpdated": "Dernière mise à jour",
       "section1": {
         "title": "1. Acceptation des conditions",
         "content": "En utilisant PostWithoutBan, vous acceptez ces conditions d'utilisation et notre politique de confidentialite."
       },
       "section2": {
         "title": "2. Licence d'utilisation",
-        "content": "L'achat d'un acces a vie vous donne le droit d'utiliser PostWithoutBan a titre personnel et non commercial. Vous ne pouvez pas revendre, transferer ou partager votre acces."
+        "content": "L'achat d'un accès à vie vous donne le droit d'utiliser PostWithoutBan à titre personnel et non commercial. Vous ne pouvez pas revendre, transférer ou partager votre accès."
       },
       "section3": {
         "title": "3. Limitation de responsabilite",
-        "content": "PostWithoutBan utilise une IA pour generer des strategies Reddit. Nous ne sommes pas responsables des consequences de votre utilisation, y compris les bannissements d'un subreddit. Utilisez les strategies a vos risques et perils."
+        "content": "PostWithoutBan utilise une IA pour générer des stratégies Reddit. Nous ne sommes pas responsables des conséquences de votre utilisation, y compris les bannissements d'un subreddit. Utilisez les stratégies à vos risques et périls."
       },
       "section4": {
         "title": "4. Modifications du service",
-        "content": "Nous nous reservons le droit de modifier ou d'arreter le service a tout moment. Les acces achetes resteront valides aussi longtemps que le service existe."
+        "content": "Nous nous réservons le droit de modifier ou d'arrêter le service à tout moment. Les accès achetés resteront valides aussi longtemps que le service existe."
       },
       "section5": {
         "title": "5. Droit applicable",
-        "content": "Ces conditions sont regies par les lois francaises. Tout litige sera resolu par voie amiable ou par les tribunaux competents."
+        "content": "Ces conditions sont régies par les lois françaises. Tout litige sera résolu par voie amiable ou par les tribunaux compétents."
       }
     },
     "footer": {
