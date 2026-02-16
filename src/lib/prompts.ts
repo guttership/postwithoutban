@@ -33,7 +33,13 @@ Pour chaque produit, identifie:
 4. L'ALTERNATIVE ACTUELLE: Que font les gens AUJOURD'HUI pour resoudre ce probleme?
 
 === INSTRUCTION POUR LA SORTIE ===
-Génère EXACTEMENT 10-12 subreddits différents et RÉELS.
+CRITIQUE: Génère SEULEMENT des subreddits qui EXISTENT VRAIMENT sur Reddit.
+- Utilise UNIQUEMENT des subreddits populaires et actifs que tu CONNAIS avec certitude
+- N'invente JAMAIS de nom de subreddit
+- Si tu n'es pas sûr qu'un subreddit existe, ne l'inclus PAS
+- Exemples de subreddits réels à considérer selon le contexte: r/SaaS, r/Entrepreneur, r/startups, r/smallbusiness, r/digitalnomad, r/marketing, r/webdev, r/programming, r/productivity, r/sideproject, etc.
+
+Génère EXACTEMENT 10-12 subreddits RÉELS ET VÉRIFIÉS.
 Génère EXACTEMENT 5 options de posts Reddit COMPLETS.
 CHAQUE option du post DOIT AVOIR:
 * Titre: Un vrai titre Reddit en FRANÇAIS
@@ -103,7 +109,13 @@ For each product, identify:
 4. THE CURRENT ALTERNATIVE: What do people do TODAY to solve this problem?
 
 === INSTRUCTION FOR OUTPUT ===
-Generate EXACTLY 10-12 different REAL subreddits.
+CRITICAL: Generate ONLY subreddits that ACTUALLY EXIST on Reddit.
+- Use ONLY popular and active subreddits you KNOW with certainty
+- NEVER invent subreddit names
+- If you're not sure a subreddit exists, do NOT include it
+- Examples of real subreddits to consider based on context: r/SaaS, r/Entrepreneur, r/startups, r/smallbusiness, r/digitalnomad, r/marketing, r/webdev, r/programming, r/productivity, r/sideproject, etc.
+
+Generate EXACTLY 10-12 REAL AND VERIFIED subreddits.
 Generate EXACTLY 5 complete Reddit post options.
 EACH post option MUST HAVE:
 * Title: A real Reddit title in ENGLISH
