@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "PostWithoutBan",
     images: [
       {
-        url: "og-image.jpg",
+        url: "/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "PostWithoutBan",
@@ -49,6 +49,7 @@ export const metadata: Metadata = {
     title: "PostWithoutBan",
     description: "Reddit strategies that survive moderation",
     creator: "@postwithoutban",
+    images: ["/images/og-image.png"],
   },
   icons: {
     icon: "/favicon.ico",
