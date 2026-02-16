@@ -1,0 +1,307 @@
+{
+  "campaign": {
+    "name": "PostWithoutBan - Launch Campaign FR",
+    "duration": "10 days",
+    "start_date": "2026-02-17",
+    "platforms": ["linkedin", "facebook", "instagram"],
+    "total_posts": 30
+  },
+  "platforms": {
+    "linkedin": {
+      "format": "professional_thought_leadership",
+      "tone": "expert_storytelling",
+      "length": "300-500 words",
+      "hashtags": 5,
+      "cta_style": "soft_engagement",
+      "best_time": "09:00 CET"
+    },
+    "facebook": {
+      "format": "community_conversation",
+      "tone": "human_relatable",
+      "length": "150-250 words",
+      "hashtags": 3,
+      "cta_style": "question_engagement",
+      "best_time": "19:00 CET"
+    },
+    "instagram": {
+      "format": "visual_first_captions",
+      "tone": "casual_inspirational",
+      "length": "80-150 words",
+      "hashtags": 10,
+      "cta_style": "call_to_action_emoji",
+      "best_time": "18:00 CET"
+    }
+  },
+  "schedule": [
+    {
+      "day": 1,
+      "date": "2026-02-17",
+      "posts": [
+        {
+          "platform": "linkedin",
+          "time": "09:00",
+          "content": "Votre dernier post Reddit s'est fait supprimer en 2 heures.\n\nLes modérateurs ne vous ont même pas laissé une chance.\n\nCe qui tue 90% des posts SaaS sur Reddit ? Le timing, la culture et l'authenticité.\n\nMais ici, je ne vais pas te parler d'une autre stratégie marketing qui ne marche que pour les growth hackers agressifs.\n\nJe viens de terminer une analyse de 500+ posts Reddit qui ont marché. Ceux qui ont généré 2k-10k upvotes. Ceux qui ont amené du trafic QUALIFIÉ.\n\nEt j'ai identifié UN schéma qui revient invariablement :\n\nLes posts qui gagnent ne sont jamais ceux qui vendent. Ce sont ceux qui racontent une histoire. Ceux qui admettent la galère. Ceux qui demandent du feedback.\n\nReddit ne bannit pas l'auto-promo si elle est authentique et apporte de la valeur.\n\nC'est juste que 99% des founders ne comprennent pas ce que \"authentique\" signifie sur Reddit.\n\nIls optimisent pour la conversion. Reddit veut la connexion humaine.\n\nQuelle était votre expérience la pire sur Reddit ? Vous avez trouvé la bonne stratégie ?\n\n#Reddit #Marketing #SaaS #IndieHacker #GrowthHacking #Authenticity #Entrepreneurship #Community",
+          "hashtags": ["#Reddit", "#Marketing", "#SaaS", "#IndieHacker", "#GrowthHacking"],
+          "cta": "Partager votre expérience en commentaire"
+        },
+        {
+          "platform": "facebook",
+          "time": "19:00",
+          "content": "Vous avez déjà eu ce sentiment ? 😤\n\nVous postez sur Reddit avec votre meilleur pitch.\n2 heures plus tard... supprimé.\n\nC'est frustrante parce que Reddit a 500k+ membres dans vos communautés.\n\nMais voilà ce que j'ai découvert : Reddit ne bannit pas l'authentique. Il bannit le marketeur qui se cache.\n\nLa différence entre un post qui tue (5k upvotes) et un post qui meurt (suppression) ? Un seul détail : le ton.\n\nSi vous avez déjà essayé Reddit marketing, racontez-nous ! Ça a marché ou c'est devenu un cauchemar ? 👇\n\n#Reddit #Marketing #SaaS",
+          "hashtags": ["#Reddit", "#Marketing", "#SaaS"],
+          "cta": "Répondez en commentaire"
+        },
+        {
+          "platform": "instagram",
+          "time": "18:00",
+          "content": "Votre post Reddit : supprimé ❌\nVotre compte : shadowban ⚠️\nVotre moral : en miettes 💔\n\nLe problème n'est pas Reddit.\nC'est que vous aviez l'air de vendre.\n\nReddit = authenticité ou rien.\n\n📍 Vous avez eu ça ?\nPartagez en commentaire ! 👇\n\n#RedditMarketing #SaaS #IndieHacker #AuthenticGrowth #NoSpam",
+          "hashtags": ["#RedditMarketing", "#SaaS", "#IndieHacker", "#AuthenticGrowth", "#NoSpam", "#Entrepreneurship", "#GrowthHacking", "#SmallBiz", "#Startup", "#Marketing"],
+          "cta": "Tapez un 🔔 en commentaire !"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2026-02-18",
+      "posts": [
+        {
+          "platform": "linkedin",
+          "time": "09:00",
+          "content": "Les 3 subreddits où les indie hackers gagnent VRAIMENT.\n\nIl y a un mythe dans la communauté startup : \"Reddit c'est pour trouver clients.\"\n\nNon. Reddit c'est pour trouver des gens qui vous feront itérer plus vite que 10 focus groups payants.\n\nMais faut poster au bon endroit.\n\nr/IndieHackers - la communauté des solo founders. Ici, tout le monde comprend la galère. Vous postez votre story : \"j'ai fait X, j'ai généré Y€\", les gens upvotent.\n\nr/Entrepreneur - moins technique que r/SaaS, plus humain. Ici on valorise le journey plus que le product.\n\nr/webdev - TRÈS technique. Mais c'est ici qu'on voit les plus beaux pas, les feedbacks les plus constructifs.\n\nLa clé ? Chaque subreddit a sa culture propre.\n\nr/SaaS va vouloir du ROI chiffré.\nr/webdev va vouloir de la technique.\nr/IndieHackers va vouloir du storytelling.\n\nLa majorité des founders postent le même message partout et s'étonnent que ça ne marche pas.\n\nVous avez identifié VOTRE niche sur Reddit ?\n\n#Reddit #SaaS #IndieHackers #GrowthHacking #Community #Entrepreneurship #Startup",
+          "hashtags": ["#Reddit", "#SaaS", "#IndieHackers", "#GrowthHacking", "#Community"],
+          "cta": "Dites-moi votre subreddit préféré"
+        },
+        {
+          "platform": "facebook",
+          "time": "19:00",
+          "content": "Attention : vous faites l'erreur que 90% des founders font 🚨\n\nVous voyez r/SaaS avec 400k membres et vous pensez :\n\"C'est mon audience parfaite !\"\n\nHélas...\n\nr/SaaS c'est plutôt pour les growth hackers qui veulent parler pricing, CAC, LTV.\n\nSi vous êtes un indie maker avec un produit nouveau, il vous tuera votre post.\n\nM IEUX : trouver votre subreddit de niche.\n\nC'est pas du tout la même énergie.\n\nVous cherchez vos utilisateurs sur Reddit ou vous lancez en silence ? 👇",
+          "hashtags": ["#Reddit", "#SaaS", "#IndieHacker"],
+          "cta": "Partagez votre stratégie"
+        },
+        {
+          "platform": "instagram",
+          "time": "18:00",
+          "content": "r/SaaS ≠ r/IndieHackers\n\nCe détail change TOUT.\n\n🎯 Trouvez votre subreddit.\n💬 Apprenez sa culture.\n📢 Ensuite, postez.\n\nPas l'inverse !\n\n#RedditMarketing #SaaS #IndieHacker #Strategy",
+          "hashtags": ["#RedditMarketing", "#SaaS", "#IndieHacker", "#Strategy", "#GrowthHacking", "#SmallBiz", "#Marketing", "#Entrepreneurship", "#Community", "#Startup"],
+          "cta": "Tag quelqu'un qui DOIT voir ça 👇"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2026-02-19",
+      "posts": [
+        {
+          "platform": "linkedin",
+          "time": "09:00",
+          "content": "J'ai regardé un post qui a fait 30k upvotes sur r/webdev.\n\nSavez-vous quoi ? Le founder n'a JAMAIS mentionné son SaaS.\n\nPas une fois.\n\nIl a juste raconté son parcours : \"J'ai galèré pendant 6 mois avec ce problème, voici ce que j'ai construit pour le résoudre, et ça vous intéresse ?\".\n\nPersonne ne s'est sentie vendue. Au contraire.\n\nIl y a une différence CRITIQUE entre :\n\n\"Découvrez mon nouveau SaaS\" ← Vous vendez\n\"Voici comment j'ai résolu ma galère, et oh by the way...\" ← Vous partagez\n\nReddit détecte instantanément le marketing agressif. Mais l'authentique ? L'authentique elle monte naturellement.\n\nC'est paradoxal : moins vous essayez de vendre, plus vous vendez.\n\nLe meilleur marketing sur Reddit est celui qui ne ressemble pas à du marketing du tout.\n\nComment vous positionneriez votre histoire si vous aviez un post à faire demain ?\n\n#Reddit #Marketing #SaaS #Authenticity #BusinessStrategy #IndieHacker #GrowthHacking",
+          "hashtags": ["#Reddit", "#Marketing", "#SaaS", "#Authenticity", "#BusinessStrategy"],
+          "cta": "Partagez en commentaire votre angle"
+        },
+        {
+          "platform": "facebook",
+          "time": "19:00",
+          "content": "Le secret d'un post Reddit qui marche ?\n\nC'est pas le produit. C'est le PROBLÈME.\n\nPas \"Voici mon outil révolutionnaire\"\nMais \"J'ai passé 6 mois à résoudre ce problème de fou\"\n\nDifférence massive.\n\nQuand vous mettez le focus sur votre galère et la solution, au lieu du produit lui-même... c'est là que Reddit dit oui.\n\nVous avez une bonne histoire derrière votre SaaS ? 👇",
+          "hashtags": ["#Reddit", "#SaaS", "#Marketing"],
+          "cta": "Racontez votre histoire"
+        },
+        {
+          "platform": "instagram",
+          "time": "18:00",
+          "content": "30k upvotes.\nZéro mention du produit.\n\nJuste une histoire vraie.\n\nC'est ça le Reddit marketing qui marche 🔥\n\n#RedditGrowth #AuthenticMarketing #SaaS #IndieHacker",
+          "hashtags": ["#RedditGrowth", "#AuthenticMarketing", "#SaaS", "#IndieHacker", "#NoBS", "#RealTalk", "#MakerLife", "#Startup", "#GrowthHacking", "#Community"],
+          "cta": "Double-tap si tu savais déjà ✌️"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2026-02-20",
+      "posts": [
+        {
+          "platform": "linkedin",
+          "time": "09:00",
+          "content": "Trois indicateurs que votre post Reddit va se faire bannir AVANT même que les modos agissent.\n\n1️⃣ Votre compte a moins de 30 jours\nReddit marque les nouveaux comptes. Si c'est votre première contribution, même qualité maximale, les soupçons vont être élevés. Solution : lurk pendant 2-3 semaines. Répondez à des posts. Participez à la communauté. PUIS postez votre story.\n\n2️⃣ Votre post ressemble à une pub\nGrammaire trop parfaite. Structuré comme un article marketing. Trop de emojis. CTA en bas en gras. Tout ça screams \"Ce gars veut me vendre quelque chose\". Solution : écrivez comme vous parlez. Traitement de texte : oubliez. Discord-style writing : visé.\n\n3️⃣ Vous ne répondez à AUCUN commentaire\nLes modérateurs regardent l'engagement. Si 50 personnes commentent et vous ne répondez pas, c'est suspect. Les vrais utilisateurs répondent. Les bots/marketeurs ne répondent pas. Solution : partez du principe que si quelqu'un commente, vous DEVEZ répondre en moins de 2h.\n\nBon, résumé simpliste, mais c'est les trois trucs qui tuent 80% des posts.\n\nVous en avez d'autres à ajouter ?\n\n#Reddit #Marketing #Strategy #SaaS #GrowthHacking #CommunityManagement #Authenticity",
+          "hashtags": ["#Reddit", "#Marketing", "#Strategy", "#SaaS", "#GrowthHacking"],
+          "cta": "Dites-moi ce qui vous a tué un post Reddit"
+        },
+        {
+          "platform": "facebook",
+          "time": "19:00",
+          "content": "3 signaux que votre post Reddit va bien se faire éliminer :\n\n1. Votre compte : tout neuf (< 30 jours) ⏰\n2. Votre post : trop poli/marketing 📝\n3. Vous ne répondez à personne 🤐\n\nReddit : communauté, pas audience.\n\nCommencez par DONNER de la valeur, PARTICIPEZ, PUIS partagez.\n\nC'est l'ordre qui marche.\n\nVous avez déjà tenté ?\n\n#Reddit #Marketing #IndieHacker",
+          "hashtags": ["#Reddit", "#Marketing", "#IndieHacker"],
+          "cta": "Dites-moi ce qui a raté"
+        },
+        {
+          "platform": "instagram",
+          "time": "18:00",
+          "content": "3 raisons pour lesquelles votre post Reddit meurt :\n\n⏰ Compote tout neuf\n📝 Ça ressemble à du marketing\n🤐 Vous répondez à rien\n\nApprendre la culture avant de poster.\n\n✌️\n\n#Reddit #Marketing #Startup",
+          "hashtags": ["#Reddit", "#Marketing", "#Startup", "#IndieHacker", "#GrowthHacking", "#SaaS", "#Entrepreneurship", "#SmallBiz", "#AuthenticGrowth", "#CommunityFirst"],
+          "cta": "Enregistre cette méthode 📌"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2026-02-21",
+      "posts": [
+        {
+          "platform": "linkedin",
+          "time": "09:00",
+          "content": "Voici pourquoi la plupart des founders échouent sur Reddit (et il y a une leçon plus grande dedans).\n\nC'est pas une question d'outil. C'est une question de mindset.\n\nQuand vous postez sur LinkedIn, vous optimisez pour : les likes, les commentaires, la visibilité.\n\nQuand vous postez sur Reddit, vous devez optimiser pour : l'authenticité, le service, l'apprentissage.\n\nC'est l'opposé exact.\n\nSur LinkedIn, vous dites : \"Voici ce que j'ai fait\"\nSur Reddit, vous dites : \"Voici ce que j'ai ÉCHOUÉ à faire et ce que j'en ai tiré\"\n\nUn monologue. L'autre, une conversation.\n\nLa plupart des founders continuent à monologuer sur Reddit parce qu'ils n'ont pas changé leur mentalité de plateforme.\n\nIls appliquent la stratégie LinkedIn (flex, traction, résultats) à Reddit (humilité, questions, feedback).\n\nResult ? Zero engagement, bannissement probable.\n\nLa vraie insight : chaque plateforme c'est pas juste un lieu, c'est une culture. Et chaque culture demande un mindset différent.\n\nLinkedIn = B2B professional storytelling\nTikTok = authentic entertainment\nReddit = intellectual humility\nInstagram = visual aspiration\n\nVous appliquez quelle mentalité à vos posts Reddit en ce moment ?\n\n#Reddit #Marketing #Platforms #Strategy #GrowthHacking #SaaS #CommunityFirst #Authenticity",
+          "hashtags": ["#Reddit", "#Marketing", "#Platforms", "#Strategy", "#GrowthHacking"],
+          "cta": "Dites-moi votre approche Reddit actuelle"
+        },
+        {
+          "platform": "facebook",
+          "time": "19:00",
+          "content": "Les founders qui réussent sur Reddit ont UN truc en commun 🎯\n\nIls ne postent pas pour vendre. Ils postent pour APPRENDRE.\n\nBig difference.\n\nQuand votre intention est : \"Je veux des clients\", ça se voit.\nQuand votre intention est : \"Je veux du feedback pour améliorer mon truc\", ça se voit aussi.\n\nReddit préfère la deuxième.\n\nSimple.\n\nQuelle est vraiment votre intention quand vous postez ?\n\n#Reddit #SaaS #Authenticity",
+          "hashtags": ["#Reddit", "#SaaS", "#Authenticity"],
+          "cta": "Soyez honnête en commentaire"
+        },
+        {
+          "platform": "instagram",
+          "time": "18:00",
+          "content": "Reddit = pas pour vendre\nReddit = pour apprendre + écouter\n\nChange votre intention.\nChange ton résultat.\n\n🎯\n\n#RedditTips #Entrepreneurship #Authenticity",
+          "hashtags": ["#RedditTips", "#Entrepreneurship", "#Authenticity", "#SaaS", "#IndieHacker", "#Marketing", "#GrowthHacking", "#SmallBiz", "#RealTalk", "#Success"],
+          "cta": "Tag un founder qui doit voir ça 👇"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2026-02-22",
+      "posts": [
+        {
+          "platform": "linkedin",
+          "time": "09:00",
+          "content": "Petite observation : les posts Reddit qui explosent (5k+ upvotes) ont toujours une structure invisible.\n\nC'est la structure qu'AUCUN copywriter marketeur n'enseignerait.\n\nVoici :\n\n🔴 PAIN : Décrivez votre galère (3 paragraphes)\n\"J'ai passé 2 ans à gérer X, et c'était tellement frustrant que...\"\n\n🟠 VULNERABILITY : Admettez votre manque d'expertise (1 paragraphe)\n\"Je ne suis pas expert, mais voici ce j'ai essayé...\"\n\n🟡 SOLUTION : Expliquez ce que vous avez construit (2 paragraphes)\n\"Du coup j'ai décidé de...\"\n\n🟢 HUMBLE QUESTION : Terminez par une vraie question (1 paragraphe)\n\"Vos avez des idées ? Vous auriez fait comment ?\"\n\nCette structure crée AUTOMATIQUEMENT l'engagement parce que :\n1. Les gens se sentent validés (pain résonne)\n2. Les gens se sentent en sécurité (vulnerability = pas de menace)\n3. Les gens sont curieux (solution est spécifique)\n4. Les gens VEULENT répondre (question invite la conversation)\n\nC'est la structure du storytelling authentique. Pas du copywriting marketing.\n\nEssayez-la sur votre prochaine story Reddit. Je parie que ça change tout.\n\n#Reddit #Marketing #Storytelling #SaaS #GrowthHacking #CommunityEngagement #ContentStrategy",
+          "hashtags": ["#Reddit", "#Marketing", "#Storytelling", "#SaaS", "#GrowthHacking"],
+          "cta": "Sauvegardez ce template"
+        },
+        {
+          "platform": "facebook",
+          "time": "19:00",
+          "content": "La structure magique qui marche sur Reddit :\n\n1. Votre problème (en détail)\n2. Votre doute (admettez-le)\n3. Votre solution (brièvement)\n4. Votre question (invite discussion)\n\nC'est tout.\n\nÇa semble simple, mais 95% des posts ignorent les étapes 2 et 4.\n\nDu coup, ça meurt.\n\nVous connaissiez cette structure ?\n\n#RedditMarketing #SaaS",
+          "hashtags": ["#RedditMarketing", "#SaaS"],
+          "cta": "Partagez votre version"
+        },
+        {
+          "platform": "instagram",
+          "time": "18:00",
+          "content": "La recette Reddit :\n\n📍 Galère\n📍 Doute\n📍 Solution simple\n📍 Question ouverte\n\nFait.\n\n✌️\n\n#RedditHacks #ContentCreating",
+          "hashtags": ["#RedditHacks", "#ContentCreating", "#SaaS", "#IndieHacker", "#Marketing", "#Storytelling", "#GrowthHacking", "#Entrepreneurship", "#SmallBiz", "#Success"],
+          "cta": "Screenshot ce post 🖼️"
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "date": "2026-02-23",
+      "posts": [
+        {
+          "platform": "linkedin",
+          "time": "09:00",
+          "content": "Une question qui sépare les \"Reddit novices\" des \"Reddit pros\" :\n\n\"À quel moment postez-vous sur Reddit ?\"\n\nLes novices disent : \"Quand il y a le plus de monde en ligne\" (pensent comme Instagram)\n\nLes pros disent : \"Quand les modérateurs NE VÉRIENT PAS\" (pensent comme une garde de sécurité)\n\nC'est une différence CRITIQUE.\n\nSur Instagram, l'algorithme est votre ami. Plus de vues = plus de growth.\n\nSur Reddit, les MODÉRATEURS sont les gatekeepers.\n\nIls ont des heures spécifiques où ils checent les nouveaux posts (généralement tôt le matin ou tard le soir). C'est pendant ces heures que les posts les plus agressifs se font flagged.\n\nVous postez pendant les heures de modération intense ? Votre post a 50% de chances de se faire shadowban avant même 1000 vues.\n\nLa vraie stratégie :\n1. Identifiez les heures de modération du subreddit\n2. Postez 2-3 heures APRÈS (quand les modos dorment mais avant que le trafic monte)\n3. Votre post est déjà en motion quand ils s'éveillent le lendemain\n\nC'est combien vous avez d'avance ? C'est énorme.\n\nExemple concret :\nr/IndieHackers vous checker vers 8am EST. Postez à 10am EST. À 8am le lendemain, votre post a 200 upvotes, 30 commentaires. Les modos vont se dire \"ok ce truc a du poids\" au lieu d'immédiatement le flaguer.\n\nPsychologie, vraiment.\n\nVous avez identifié les patterns de modération sur VOS subreddits ?\n\n#Reddit #MarketingStrategy #Timing #SaaS #GrowthHacking #ProTips #IndieHacker",
+          "hashtags": ["#Reddit", "#MarketingStrategy", "#Timing", "#SaaS", "#GrowthHacking"],
+          "cta": "Dites-moi votre meilleur timing Reddit"
+        },
+        {
+          "platform": "facebook",
+          "time": "19:00",
+          "content": "Petite astuce que personne ne parle sur Reddit 🤫\n\nC'est pas le NOMBRE de gens en ligne qui compte.\nC'est QUAND les modérateurs ne checent PAS.\n\nPostez quand les modos dorment, mais avant que votre audience se réveille.\n\nResult : votre post a déjà du traction quand ils le voient.\n\nProblème résolu ? Pas shadow-ban.\nProblème détecté ? Ban incoming.\n\nTiming ou timing.\n\nVous avez testé ça ?\n\n#Reddit #SaaS #ProTips",
+          "hashtags": ["#Reddit", "#SaaS", "#ProTips"],
+          "cta": "Faites-moi signe quand c'est bon"
+        },
+        {
+          "platform": "instagram",
+          "time": "18:00",
+          "content": "Reddit timing hack ⏰\n\nPas : heure peak\nMais : heure-modos-dorment\n\nChange le game.\n\n🔥\n\n#RedditHacks #Timing #Marketing",
+          "hashtags": ["#RedditHacks", "#Timing", "#Marketing", "#SaaS", "#GrowthHacking", "#IndieHacker", "#ProTips", "#Strategy", "#SmallBiz", "#Success"],
+          "cta": "Teste et reviens me dire 👇"
+        }
+      ]
+    },
+    {
+      "day": 8,
+      "date": "2026-02-24",
+      "posts": [
+        {
+          "platform": "linkedin",
+          "time": "09:00",
+          "content": "Les 3 commentaires les plus dangereux sur un post Reddit (et comment les gérer).\n\nVous venez de poster votre story. Les upvotes montent. Soudain :\n\n🔴 COMMENTAIRE 1 : \"C'est juste du marketing déguisé.\"\n\nVotre réaction instinctive : défendre votre post, expliquer que non c'est sérieux.\n\nMAUVAIS.\n\nBonne réaction : \"Haha j'ai compris que ça ressemble à ça. Mais franchement je posais juste pour avoir des idées. Vous pensez que je pourrais faire différent ?\"\n\nC'est pas une attaque. C'est un test de légitimité. Montrez-vous vulnérable ET ouvert à la critique.\n\n🟠 COMMENTAIRE 2 : \"Pourquoi tu parles que de toi ? Où est la vraie valeur ?\"\n\nVotre réaction instinctive : \"Mais j'ai fourni du contexte pour que vous compreniez...\"\n\nMAUVAIS.\n\nBonne réaction : \"Good point, vous avez raison. Voici ce que les gens trouvent le plus utile [3 points concrets]. Ça répond mieux à votre question ?\"\n\nAcceptez la critique, pivotez vers plus de valeur.\n\n🟡 COMMENTAIRE 3 : \"Combien tu gagnes avec ça ?\"\n\nVotre réaction instinctive : il faut qu'il vérifier si vous profitez. Donc c'est OK de partager.\n\nEVENTUELLEMENT.\n\nMais attendez avant de donner des chiffres. D'abord vérifiez si la personne est légitime (historique, ton, questions précédentes). Si oui, répondez. Si non, répondez avec \"franchement c'est encore trop tôt pour qu'on sorte les vrais chiffres, mais on peut en parler si vous êtes intéressé\"\n\nLa gestion des commentaires c'est 50% de votre succès Reddit.\n\nVous répondez à quels types de commentaires en priorité ?\n\n#Reddit #CommunityManagement #SaaS #GrowthHacking #Engagement #Strategy #IndieHacker #Marketing",
+          "hashtags": ["#Reddit", "#CommunityManagement", "#SaaS", "#GrowthHacking", "#Engagement"],
+          "cta": "Partagez un commentaire difficile que vous avez eu"
+        },
+        {
+          "platform": "facebook",
+          "time": "19:00",
+          "content": "Les commentaires les plus dangereux sur Reddit :\n\n1. \"C'est du marketing\" → Dire oui à la vulnérabilité\n2. \"Pourquoi juste parler de toi\" → Donner plus de valeur\n3. \"Combien tu gagnes\" → Vérifier la légitimité du gars\n\nComment vous répondez ? Change TOUT.\n\nMost founders répondent défendu.\nProvincie founders répondent vulnérable.\n\nLa stratégie c'est pas l'post.\nC'est comment vous gérez l'après.\n\nQu'est-ce que vous trouvez le plus difficile ?\n\n#Reddit #SaaS #CommunityFirst",
+          "hashtags": ["#Reddit", "#SaaS", "#CommunityFirst"],
+          "cta": "Dites-moi votre défi"
+        },
+        {
+          "platform": "instagram",
+          "time": "18:00",
+          "content": "Le secret Reddit : gérer les commentaires mieux que la plupart\n\nCommentaire critique ?\n→ Vulnérable, pas défensif\n\nCommentaire \"qui es-tu ?\"\n→ Honnête, pas timide\n\nC'est la différence entre 100 upvotes et 5000.\n\n✌️\n\n#RedditStrategy #CommunityFirst",
+          "hashtags": ["#RedditStrategy", "#CommunityFirst", "#SaaS", "#IndieHacker", "#Marketing", "#Engagement", "#Growth", "#Entrepreneurship", "#SmallBiz", "#Success"],
+          "cta": "Comment tu gères les critiques ? 👇"
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "date": "2026-02-25",
+      "posts": [
+        {
+          "platform": "linkedin",
+          "time": "09:00",
+          "content": "Voici ce qu'un post Reddit VRAIMENT réussi ressemble.\n\nCe n'est pas un post que j'ai écrit, c'est un pattern que j'ai vu 50 fois.\n\n📌 Le post commence par : \"Je pensais que c'était une bonne idée, jusqu'à...\"\n→ Hook immédiat. Les gens continuent de lire parce qu'il y aura un plot twist.\n\n📌 Le middle est rempli de : \"J'ai essayé X, ça n'a pas marché, j'ai pivé vers Y\"\n→ Pas de droit au but. C'est un processus. Les gens ADORENT les processus.\n\n📌 La fin est toujours : \"Maintenant je fais Z. Mais honnêtement, je suis pas sûr que ça va rester comme ça, qu'est-ce que vous en pensez ?\"\n→ Pas un conclustive ending. C'est une question ouverte. Cela crée la conversation.\n\n📌 Les chiffres (s'il y en a) viennent toujours APRÈS l'histoire, pas avant\n→ Pas de flex leadoff. L'histoire d'abord, les résultats après.\n\nLe pattern c'est : Vulnerability → Journey → Uncertainty → Question\n\nC'est l'opposé exact du storytelling LinkedIn (Achievement → Results → Call-to-action).\n\nRegardez les posts top d'un subreddit. Vous verrez ce pattern récurrement.\n\nVous pouvez l'utiliser demain pour votre post.\n\nQue vous en pensez de cette structure ?\n\n#Reddit #Storytelling #Marketing #SaaS #GrowthHacking #ContentStrategy #CommunityEngagement #Authenticity",
+          "hashtags": ["#Reddit", "#Storytelling", "#Marketing", "#SaaS", "#GrowthHacking"],
+          "cta": "Testez-la sur votre prochain post"
+        },
+        {
+          "platform": "facebook",
+          "time": "19:00",
+          "content": "La structure du post Reddit qui marche :\n\n1. Plot twist (pourquoi continuer à lire ?)\n2. Journey (comment vous avez pivoté)\n3. Uncertainty (vous êtes pas sûr)\n4. Question (invitez la conversation)\n\nLinkedIn : achievement → results\nReddit : vulnerability → question\n\nC'est clé.\n\nVous écrivez ça comment ?\n\n#RedditMarketing #SaaS",
+          "hashtags": ["#RedditMarketing", "#SaaS"],
+          "cta": "Montrez-moi votre draft"
+        },
+        {
+          "platform": "instagram",
+          "time": "18:00",
+          "content": "Reddit post structure :\n\n🔴 Plot twist\n🟠 Journey\n🟡 Uncertainty  \n🟢 Question\n\nFait.\n\nLinkedIn = hype\nReddit = honesty\n\n✌️\n\n#RedditTips #Authenticity",
+          "hashtags": ["#RedditTips", "#Authenticity", "#SaaS", "#IndieHacker", "#Marketing", "#Storytelling", "#GrowthHacking", "#Content", "#Entrepreneurship", "#Success"],
+          "cta": "Mets en practice ce weekend 🚀"
+        }
+      ]
+    },
+    {
+      "day": 10,
+      "date": "2026-02-26",
+      "posts": [
+        {
+          "platform": "linkedin",
+          "time": "09:00",
+          "content": "Dernier jour de cette série Reddit.\n\nVoici ce que je veux que vous reteniez.\n\nReddit n'est pas un canal de marketing. C'est un canal de COMMUNAUTÉ.\n\nC'est pas un endroit pour mettre votre SaaS.\nC'est un endroit pour être LE mec qui comprend la galère mieux que les autres.\n\nQuand vous postez sur Reddit, vous ne vendez pas votre produit.\nVous vous VENDEZ vous-même comme quelqu'un d'authentique, humble et utile.\n\nEt paradoxalement, à partir du moment où les gens VOUS font confiance, vos produit vend tout seul.\n\nVoici votre action plan pour la prochaine semaine :\n\n1. Identifiez votre subreddit (pas le plus gros, le plus PERTINENT)\n2. Lurk pendant 2 semaines (lisez les top posts, comprenez la culture)\n3. Répondez à 10 posts existants (sans jamais promouvoir)\n4. PUIS postez votre story\n5. Répondez à CHAQUE commentaire en moins de 2 heures\n\nC'est tout.\n\nVous allez voir que l'engagement va arriver naturellement.\n\nBonne chance ! 🚀\n\n#Reddit #Marketing #SaaS #GrowthHacking #CommunityFirst #Entrepreneurship #IndieHacker #AuthenticGrowth #BusinessStrategy #Success",
+          "hashtags": ["#Reddit", "#Marketing", "#SaaS", "#GrowthHacking", "#CommunityFirst"],
+          "cta": "Dites-moi comment ça se passe dans 2 semaines"
+        },
+        {
+          "platform": "facebook",
+          "time": "19:00",
+          "content": "Récap de la semaine : Reddit c'est pas pour vendre.\n\nC'est pour ÊTRE la personne que les gens font confiance.\n\nEnsuite, naturellement, ils achètent votre truc.\n\nGrand différence 🎯\n\nVotre plan :\n1. Choix du subreddit pertinent\n2. Lurk 2 semaines\n3. Participez 10 fois\n4. Postez votre vraie story\n5. Répondez à tout\n\nQui essaye cette semaine ?\n\n#Reddit #SaaS #BusinessGrowth",
+          "hashtags": ["#Reddit", "#SaaS", "#BusinessGrowth"],
+          "cta": "Commentez OUI si tu y vas !"
+        },
+        {
+          "platform": "instagram",
+          "time": "18:00",
+          "content": "Reddit 101 en un post :\n\nLurk → Participate → Build Trust → Post Story → Respond\n\nC'est ça qui marche.\n\nPas le contraire 🔄\n\n#RedditSuccess #AuthenticGrowth #SaaS",
+          "hashtags": ["#RedditSuccess", "#AuthenticGrowth", "#SaaS", "#IndieHacker", "#Marketing", "#CommunityBuilding", "#GrowthHacking", "#Entrepreneurship", "#SmallBiz", "#Success"],
+          "cta": "Save. Share. Go. 🚀"
+        }
+      ]
+    }
+  ]
+}
