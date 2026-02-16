@@ -166,5 +166,53 @@
       "Mises à jour futures",
       "Support par email"
     ]
+  },
+  "beforeAfter": {
+    "title": "Exemple concret : Post supprimé vs Post qui survit",
+    "deleted": {
+      "heading": "Post supprimé",
+      "titleLabel": "Titre :",
+      "title": "Découvrez mon nouvel outil SaaS",
+      "contentLabel": "Contenu :",
+      "content": "\"Salut à tous ! Je viens de lancer CodeSnap, un outil qui aide les développeurs à partager des snippets de code. C'est construit avec Next.js et a des features incroyables. Découvrez-le ici [lien]. Utilisez le code STARTUP pour 50% de réduction !\"",
+      "result": "Supprimé en 2 heures. Risque de shadowban élevé."
+    },
+    "survives": {
+      "heading": "Post qui survit",
+      "titleLabel": "Titre :",
+      "title": "J'ai lutté 6 mois pour partager du code dans Slack",
+      "contentLabel": "Contenu :",
+      "content": "\"Puis j'ai réalisé que le vrai problème n'était pas le partage, c'était le contexte. Vous collez un snippet, mais personne ne comprend POURQUOI ni ce qui a changé. J'ai construit CodeSnap pour résoudre ça. Vous avez eu des problèmes similaires ? Quel est VOTRE contournement ?\"",
+      "result": "5 200 upvotes. 200+ visites qualifiées."
+    }
+  },
+  "whatWeAnalyze": {
+    "title": "Ce que PostWithoutBan analyse",
+    "items": [
+      {
+        "title": "Analyse du site",
+        "description": "Problème principal, audience cible, stratégie tarifaire, positionnement"
+      },
+      {
+        "title": "Détection des signaux d'alerte",
+        "description": "Langage qui fait supprimer les posts, déclencheurs de modération, erreurs courantes"
+      },
+      {
+        "title": "Estimations réalistes",
+        "description": "Engagement attendu basé sur le subreddit, le timing et la structure"
+      },
+      {
+        "title": "Recherche Subreddit",
+        "description": "Meilleures communautés pour votre niche, culture, heures de publication, règles"
+      },
+      {
+        "title": "Génération de posts",
+        "description": "Posts authentiques qui résolvent des problèmes tout en mentionnant naturellement votre outil"
+      },
+      {
+        "title": "Conseils tactiques",
+        "description": "Stratégies spécifiques par subreddit, formats et angles de discussion"
+      }
+    ]
   }
 }

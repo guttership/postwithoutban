@@ -96,43 +96,43 @@ export default function LandingPage() {
       <section className="py-20 px-4 bg-zinc-900/50">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-3xl font-bold text-zinc-100 text-center mb-16">
-            Real Example: Post That Gets Deleted vs Post That Survives
+            {t("beforeAfter.title")}
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {/* Before */}
             <div className="rounded-xl bg-zinc-900 p-6 border border-zinc-800">
-              <h3 className="text-lg font-semibold text-zinc-100 mb-4">Post Gets Deleted</h3>
+              <h3 className="text-lg font-semibold text-zinc-100 mb-4">{t("beforeAfter.deleted.heading")}</h3>
               <div className="space-y-3 text-sm text-zinc-300">
                 <div>
-                  <span className="font-semibold text-orange-500">Title:</span> Check out my new SaaS tool
+                  <span className="font-semibold text-orange-500">{t("beforeAfter.deleted.titleLabel")}</span> {t("beforeAfter.deleted.title")}
                 </div>
                 <div>
-                  <span className="font-semibold text-orange-500">Content:</span>
+                  <span className="font-semibold text-orange-500">{t("beforeAfter.deleted.contentLabel")}</span>
                 </div>
                 <p className="text-zinc-400 font-mono text-xs leading-relaxed">
-                  &quot;Hey everyone! I just launched CodeSnap, a tool that helps developers share code snippets. It&apos;s built with Next.js and has amazing features. Check it out at [link]. Use code STARTUP for 50% off!&quot;
+                  {t("beforeAfter.deleted.content")}
                 </p>
                 <div className="text-xs text-zinc-500 pt-2 border-t border-zinc-800">
-                  Deleted in 2 hours. High shadowban risk.
+                  {t("beforeAfter.deleted.result")}
                 </div>
               </div>
             </div>
 
             {/* After */}
             <div className="rounded-xl bg-zinc-900 p-6 border border-zinc-700">
-              <h3 className="text-lg font-semibold text-zinc-100 mb-4">Post That Survives</h3>
+              <h3 className="text-lg font-semibold text-zinc-100 mb-4">{t("beforeAfter.survives.heading")}</h3>
               <div className="space-y-3 text-sm text-zinc-300">
                 <div>
-                  <span className="font-semibold text-orange-500">Title:</span> I struggled sharing code in Slack for 6 months
+                  <span className="font-semibold text-orange-500">{t("beforeAfter.survives.titleLabel")}</span> {t("beforeAfter.survives.title")}
                 </div>
                 <div>
-                  <span className="font-semibold text-orange-500">Content:</span>
+                  <span className="font-semibold text-orange-500">{t("beforeAfter.survives.contentLabel")}</span>
                 </div>
                 <p className="text-zinc-400 font-mono text-xs leading-relaxed">
-                  &quot;Then I realized the real problem wasn&apos;t sharing—it was context. You paste a snippet, but nobody understands WHY or what changed. Built CodeSnap to solve this. Has anyone faced similar issues? What&apos;s YOUR workaround?&quot;
+                  {t("beforeAfter.survives.content")}
                 </p>
                 <div className="text-xs text-zinc-400 pt-2 border-t border-zinc-800">
-                  5.2k upvotes. 200+ qualified visits.
+                  {t("beforeAfter.survives.result")}
                 </div>
               </div>
             </div>
@@ -144,37 +144,21 @@ export default function LandingPage() {
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-5xl">
           <h2 className="text-3xl font-bold text-zinc-100 text-center mb-16">
-            What PostWithoutBan Analyzes
+            {t("whatWeAnalyze.title")}
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              <div className="p-4 rounded-lg bg-zinc-900 border border-zinc-800">
-                <h4 className="font-semibold text-zinc-100 mb-2">Website Analysis</h4>
-                <p className="text-sm text-zinc-400">Core problem, target audience, pricing strategy, positioning</p>
+            {(t.raw("whatWeAnalyze.items") as Array<{title: string; description: string}>).slice(0, 3).map((item, index) => (
+              <div key={index} className="p-4 rounded-lg bg-zinc-900 border border-zinc-800">
+                <h4 className="font-semibold text-zinc-100 mb-2">{item.title}</h4>
+                <p className="text-sm text-zinc-400">{item.description}</p>
               </div>
-              <div className="p-4 rounded-lg bg-zinc-900 border border-zinc-800">
-                <h4 className="font-semibold text-zinc-100 mb-2">Red Flags Detection</h4>
-                <p className="text-sm text-zinc-400">Language that gets posts deleted, moderation triggers, common mistakes</p>
+            ))}
+            {(t.raw("whatWeAnalyze.items") as Array<{title: string; description: string}>).slice(3, 6).map((item, index) => (
+              <div key={index + 3} className="p-4 rounded-lg bg-zinc-900 border border-zinc-800">
+                <h4 className="font-semibold text-zinc-100 mb-2">{item.title}</h4>
+                <p className="text-sm text-zinc-400">{item.description}</p>
               </div>
-              <div className="p-4 rounded-lg bg-zinc-900 border border-zinc-800">
-                <h4 className="font-semibold text-zinc-100 mb-2">Realistic Estimates</h4>
-                <p className="text-sm text-zinc-400">Expected engagement based on subreddit, timing, and structure</p>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <div className="p-4 rounded-lg bg-zinc-900 border border-zinc-800">
-                <h4 className="font-semibold text-zinc-100 mb-2">Subreddit Research</h4>
-                <p className="text-sm text-zinc-400">Best communities for your niche, culture, posting times, rules</p>
-              </div>
-              <div className="p-4 rounded-lg bg-zinc-900 border border-zinc-800">
-                <h4 className="font-semibold text-zinc-100 mb-2">Post Generation</h4>
-                <p className="text-sm text-zinc-400">Authentic posts that solve problems while naturally mentioning your tool</p>
-              </div>
-              <div className="p-4 rounded-lg bg-zinc-900 border border-zinc-800">
-                <h4 className="font-semibold text-zinc-100 mb-2">Tactical Tips</h4>
-                <p className="text-sm text-zinc-400">Subreddit-specific strategies, formats, and discussion angles</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

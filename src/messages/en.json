@@ -166,5 +166,53 @@
       "Future updates included",
       "Email support"
     ]
+  },
+  "beforeAfter": {
+    "title": "Real Example: Post That Gets Deleted vs Post That Survives",
+    "deleted": {
+      "heading": "Post Gets Deleted",
+      "titleLabel": "Title:",
+      "title": "Check out my new SaaS tool",
+      "contentLabel": "Content:",
+      "content": "\"Hey everyone! I just launched CodeSnap, a tool that helps developers share code snippets. It's built with Next.js and has amazing features. Check it out at [link]. Use code STARTUP for 50% off!\"",
+      "result": "Deleted in 2 hours. High shadowban risk."
+    },
+    "survives": {
+      "heading": "Post That Survives",
+      "titleLabel": "Title:",
+      "title": "I struggled sharing code in Slack for 6 months",
+      "contentLabel": "Content:",
+      "content": "\"Then I realized the real problem wasn't sharing—it was context. You paste a snippet, but nobody understands WHY or what changed. Built CodeSnap to solve this. Has anyone faced similar issues? What's YOUR workaround?\"",
+      "result": "5.2k upvotes. 200+ qualified visits."
+    }
+  },
+  "whatWeAnalyze": {
+    "title": "What PostWithoutBan Analyzes",
+    "items": [
+      {
+        "title": "Website Analysis",
+        "description": "Core problem, target audience, pricing strategy, positioning"
+      },
+      {
+        "title": "Red Flags Detection",
+        "description": "Language that gets posts deleted, moderation triggers, common mistakes"
+      },
+      {
+        "title": "Realistic Estimates",
+        "description": "Expected engagement based on subreddit, timing, and structure"
+      },
+      {
+        "title": "Subreddit Research",
+        "description": "Best communities for your niche, culture, posting times, rules"
+      },
+      {
+        "title": "Post Generation",
+        "description": "Authentic posts that solve problems while naturally mentioning your tool"
+      },
+      {
+        "title": "Tactical Tips",
+        "description": "Subreddit-specific strategies, formats, and discussion angles"
+      }
+    ]
   }
 }
