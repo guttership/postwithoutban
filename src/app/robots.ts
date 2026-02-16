@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/admin/', '/_next/', '/.next/'],
+        disallow: ['/api/', '/admin/', '/_next/', '/.next/', '/app', '/access', '/success', '/login'],
       },
     ],
     sitemap: 'https://postwithoutban.com/sitemap.xml',
