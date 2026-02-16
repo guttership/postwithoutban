@@ -16,7 +16,9 @@ function getCookieValue(name: string): string | null {
 
 function setCookie(name: string, value: string, days: number) {
   const maxAge = days * 24 * 60 * 60;
-  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${maxAge}`;
+  const isSecure = typeof window !== "undefined" && window.location.protocol === "https:";
+  const secureFlag = isSecure ? "; Secure" : "";
+  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${maxAge}; SameSite=Lax${secureFlag}`;
 }
 
 function getGtag(): ((...args: unknown[]) => void) | null {
