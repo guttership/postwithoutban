@@ -15,15 +15,15 @@
   "features": {
     "title": "Pourquoi vos posts se font bannir",
     "feature1": {
-      "title": "❌ Ce qui tue un post",
+      "title": "Ce qui tue un post",
       "description": "\"Check out my startup\" → Instant delete. \"Built in 2 weeks\" + auto-promo → Shadowban. Vous postez déjà comme ça ?"
     },
     "feature2": {
-      "title": "✅ Ce qui marche vraiment",
+      "title": "Ce qui marche vraiment",
       "description": "\"I struggled with X, so I made Y\" + preuves. Les mods acceptent. 5k+ upvotes. Voilà la différence."
     },
     "feature3": {
-      "title": "🎯 La stratégie par subreddit",
+      "title": "La stratégie par subreddit",
       "description": "r/indiehackers accepte les Feedback Friday. r/SaaS veut du technique. r/webdev préfère le tutorial. PostWithoutBan le sait."
     }
   },

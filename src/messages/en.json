@@ -15,15 +15,15 @@
   "features": {
     "title": "Why your Reddit posts fail",
     "feature1": {
-      "title": "❌ What kills a post",
+      "title": "What kills a post",
       "description": "\"Check out my startup\" → Instant delete. \"Built in 2 weeks\" + self-promo → Shadowban. You're already posting like that?"
     },
     "feature2": {
-      "title": "✅ What actually works",
+      "title": "What actually works",
       "description": "\"I struggled with X, so I made Y\" + proof. Mods accept it. 5k+ upvotes. That's the difference."
     },
     "feature3": {
-      "title": "🎯 Subreddit-specific tactics",
+      "title": "Subreddit-specific tactics",
       "description": "r/indiehackers loves Feedback Friday. r/SaaS wants technical depth. r/webdev prefers tutorials. PostWithoutBan knows this."
     }
   },
