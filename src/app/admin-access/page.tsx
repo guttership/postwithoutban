@@ -11,17 +11,22 @@ export default function AdminAccessPage() {
     // Activer le cookie automatiquement
     const token = "be35e780-ce74-4b41-9a02-0dd2e6d9c1bb";
     
-    // Définir le cookie
-    document.cookie = `pwb_access=${token}; path=/; max-age=31536000; SameSite=Lax`;
+    // Définir le cookie avec Secure si HTTPS
+    const isSecure = window.location.protocol === "https:";
+    const secureFlag = isSecure ? "; Secure" : "";
+    document.cookie = `pwb_access=${token}; path=/; max-age=31536000; SameSite=Lax${secureFlag}`;
+    
+    console.log("Cookie pwb_access défini:", document.cookie);
     
     // Vérifier que le cookie est bien défini de manière async
     setTimeout(() => {
       const cookies = document.cookie;
+      console.log("Vérification du cookie:", cookies);
       if (cookies.includes(token)) {
         setStatus("success");
-        // Rediriger vers /app après 2 secondes
+        // Rediriger vers /demo après 2 secondes pour tester
         setTimeout(() => {
-          router.push("/app");
+          router.push("/demo");
         }, 2000);
       } else {
         setStatus("error");

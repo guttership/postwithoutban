@@ -99,7 +99,19 @@ const isLocalhost = () => {
      window.location.hostname.startsWith('192.168.'));
 };
 
+// Vérifie si l'utilisateur a un accès illimité via cookie
+const hasUnlimitedAccess = () => {
+  if (typeof document === 'undefined') return false;
+  return document.cookie.includes('pwb_access=');
+};
+
 function getDemoState() {
+  // Pas de limite si accès illimité (cookie pwb_access)
+  if (hasUnlimitedAccess()) {
+    console.log('[Demo] Accès illimité détecté via cookie pwb_access');
+    return { canUse: true, count: 0 };
+  }
+
   // Pas de limite en localhost
   if (isLocalhost()) {
     return { canUse: true, count: 0 };
@@ -139,6 +151,12 @@ export default function DemoPage() {
   const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
 
   const handleAnalysisComplete = useCallback(() => {
+    // Ne pas incrémenter le compteur si accès illimité
+    if (hasUnlimitedAccess()) {
+      console.log('[Demo] Analyse complétée avec accès illimité - pas de limite');
+      return;
+    }
+
     // Ne pas incrémenter le compteur en localhost
     if (!isLocalhost()) {
       const newCount = demoState.count + 1;
