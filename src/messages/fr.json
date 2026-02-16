@@ -6,25 +6,25 @@
     "login": "Connexion"
   },
   "hero": {
-    "tagline": "Know where to post. Know what to say. Don't get banned.",
-    "title": "Arretez de deviner ou poster sur Reddit.",
-    "subtitle": "PostWithoutBan vous dit ou, comment et quoi poster — sans vous faire bannir.",
+    "tagline": "Votre dernier post s'est fait supprimer. Ce post-CI ne se fera pas.",
+    "title": "Arrêtez de vous faire bannir de Reddit.",
+    "subtitle": "L'IA qui comprend la culture Reddit. Obtenez des posts authentiques qui survivent à la modération, pas du spam qui se fait supprimer en 2h.",
     "cta": "Essayer gratuitement",
     "ctaSecondary": "Voir les tarifs"
   },
   "features": {
-    "title": "Comment ca fonctionne",
+    "title": "Pourquoi vos posts se font bannir",
     "feature1": {
-      "title": "Analysez votre SaaS",
-      "description": "Entrez l'URL de votre site et laissez l'IA comprendre votre produit et votre audience."
+      "title": "❌ Ce qui tue un post",
+      "description": "\"Check out my startup\" → Instant delete. \"Built in 2 weeks\" + auto-promo → Shadowban. Vous postez déjà comme ça ?"
     },
     "feature2": {
-      "title": "Obtenez des subreddits cibles",
-      "description": "Recevez une liste de subreddits pertinents avec leur niveau de risque et l'angle recommande."
+      "title": "✅ Ce qui marche vraiment",
+      "description": "\"I struggled with X, so I made Y\" + preuves. Les mods acceptent. 5k+ upvotes. Voilà la différence."
     },
     "feature3": {
-      "title": "Posts prets a publier",
-      "description": "Obtenez des posts rediges naturellement, sans langage marketing, prets a copier-coller."
+      "title": "🎯 La stratégie par subreddit",
+      "description": "r/indiehackers accepte les Feedback Friday. r/SaaS veut du technique. r/webdev préfère le tutorial. PostWithoutBan le sait."
     }
   },
   "pricing": {

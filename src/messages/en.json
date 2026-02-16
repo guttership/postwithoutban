@@ -6,25 +6,25 @@
     "login": "Login"
   },
   "hero": {
-    "tagline": "Know where to post. Know what to say. Don't get banned.",
-    "title": "Stop guessing where to post on Reddit.",
-    "subtitle": "PostWithoutBan tells you where, how, and what to post — without getting banned.",
+    "tagline": "Your last post got deleted. This one won't.",
+    "title": "Stop getting banned from Reddit.",
+    "subtitle": "The AI that understands Reddit culture. Get authentic posts that survive moderation, not spam that gets deleted in 2 hours.",
     "cta": "Try for free",
     "ctaSecondary": "See pricing"
   },
   "features": {
-    "title": "How it works",
+    "title": "Why your Reddit posts fail",
     "feature1": {
-      "title": "Analyze your SaaS",
-      "description": "Enter your website URL and let AI understand your product and audience."
+      "title": "❌ What kills a post",
+      "description": "\"Check out my startup\" → Instant delete. \"Built in 2 weeks\" + self-promo → Shadowban. You're already posting like that?"
     },
     "feature2": {
-      "title": "Get targeted subreddits",
-      "description": "Receive a list of relevant subreddits with risk levels and recommended angles."
+      "title": "✅ What actually works",
+      "description": "\"I struggled with X, so I made Y\" + proof. Mods accept it. 5k+ upvotes. That's the difference."
     },
     "feature3": {
-      "title": "Ready-to-post content",
-      "description": "Get naturally written posts without marketing language, ready to copy-paste."
+      "title": "🎯 Subreddit-specific tactics",
+      "description": "r/indiehackers loves Feedback Friday. r/SaaS wants technical depth. r/webdev prefers tutorials. PostWithoutBan knows this."
     }
   },
   "pricing": {
