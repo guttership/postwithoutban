@@ -406,7 +406,7 @@ export default function RedditStrategyForm({ onAnalysisComplete }: RedditStrateg
                       {result.redditPost.options[selectedPostIndex].explanation}
                     </p>
                   </div>
-                  {result.redditPost.options[selectedPostIndex].bestSubreddits.length > 0 && (
+                  {result.redditPost.options[selectedPostIndex].bestSubreddits?.length > 0 && (
                     <div className="mt-4 pt-4 border-t border-zinc-800">
                       <p className="text-xs text-zinc-500 mb-2">Subreddits recommandés :</p>
                       <div className="flex flex-wrap gap-2">
