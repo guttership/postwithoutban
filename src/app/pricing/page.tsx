@@ -1,12 +1,13 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useState } from "react";
 import { Check, Loader2 } from "lucide-react";
 import Navbar from "../components/Navbar";
 
 export default function PricingPage() {
   const t = useTranslations();
+  const locale = useLocale();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleCheckout = async () => {
@@ -17,6 +18,7 @@ export default function PricingPage() {
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify({ language: locale }),
       });
 
       const data = await response.json();

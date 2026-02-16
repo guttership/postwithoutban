@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import {
   Loader2,
   Copy,
@@ -13,9 +13,10 @@ import {
   TrendingUp,
   MessageSquare,
   MousePointer,
-  Shield,
-  ShieldAlert,
-  ShieldX,
+  Circle,
+  Zap,
+  Code2,
+  HeartHandshake,
 } from "lucide-react";
 
 interface AnalysisResult {
@@ -26,8 +27,7 @@ interface AnalysisResult {
   };
   subreddits: SubredditStrategy[];
   redditPost: {
-    title: string;
-    body: string;
+    options: RedditPostOption[];
   };
   realisticEstimates: {
     clicksRange: string;
@@ -35,6 +35,15 @@ interface AnalysisResult {
     worthIt: boolean;
     warning: string;
   };
+}
+
+interface RedditPostOption {
+  riskLevel: string;
+  title: string;
+  body: string;
+  explanation: string;
+  expectedEngagement: string;
+  bestSubreddits: string[];
 }
 
 interface SubredditStrategy {
@@ -52,12 +61,14 @@ interface RedditStrategyFormProps {
 export default function RedditStrategyForm({ onAnalysisComplete }: RedditStrategyFormProps) {
   const t = useTranslations("form");
   const tResults = useTranslations("results");
+  const locale = useLocale();
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
+  const [selectedPostIndex, setSelectedPostIndex] = useState(0);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -85,7 +96,7 @@ export default function RedditStrategyForm({ onAnalysisComplete }: RedditStrateg
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ url, description }),
+        body: JSON.stringify({ url, description, language: locale }),
       });
 
       if (!response.ok) {
@@ -107,39 +118,87 @@ export default function RedditStrategyForm({ onAnalysisComplete }: RedditStrateg
     switch (risk) {
       case "Low":
         return {
-          icon: <Shield className="w-3.5 h-3.5" />,
-          class: "text-emerald-500 bg-emerald-500/15",
+          icon: <Circle className="w-3 h-3 fill-emerald-400" />,
+          class: "text-emerald-400 bg-zinc-800",
+          label: "Faible",
         };
       case "Medium":
         return {
-          icon: <ShieldAlert className="w-3.5 h-3.5" />,
-          class: "text-amber-500 bg-amber-500/15",
+          icon: <Circle className="w-3 h-3 fill-orange-400" />,
+          class: "text-orange-400 bg-zinc-800",
+          label: "Moyen",
         };
       case "High":
         return {
-          icon: <ShieldX className="w-3.5 h-3.5" />,
-          class: "text-red-500 bg-red-500/15",
+          icon: <Circle className="w-3 h-3 fill-red-400" />,
+          class: "text-red-400 bg-zinc-800",
+          label: "Élevé",
         };
       default:
         return {
-          icon: <Shield className="w-3.5 h-3.5" />,
-          class: "text-zinc-500 bg-zinc-500/15",
+          icon: <Circle className="w-3 h-3 fill-zinc-500" />,
+          class: "text-zinc-500 bg-zinc-800",
+          label: risk,
         };
     }
   };
 
   const getScoreColor = (score: number) => {
-    if (score >= 4) return "text-emerald-500";
-    if (score >= 3) return "text-amber-500";
-    return "text-red-500";
+    if (score >= 4) return "text-orange-400";
+    if (score >= 3) return "text-zinc-300";
+    return "text-zinc-500";
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(
-      `${result?.redditPost.title}\n\n${result?.redditPost.body}`
-    );
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    const selectedPost = result?.redditPost.options[selectedPostIndex];
+    if (selectedPost) {
+      navigator.clipboard.writeText(
+        `${selectedPost.title}\n\n${selectedPost.body}`
+      );
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  const getRiskLevelBadge = (riskLevel: string) => {
+    switch (riskLevel) {
+      case "very_safe":
+        return {
+          label: "Très sûr",
+          icon: <Circle className="w-3 h-3 fill-emerald-400" />,
+          class: "text-emerald-400 bg-zinc-800",
+        };
+      case "moderate":
+        return {
+          label: "Modéré",
+          icon: <Circle className="w-3 h-3 fill-orange-400" />,
+          class: "text-orange-400 bg-zinc-800",
+        };
+      case "bold":
+        return {
+          label: "Audacieux",
+          icon: <Zap className="w-3 h-3" />,
+          class: "text-orange-400 bg-zinc-800",
+        };
+      case "technical":
+        return {
+          label: "Technique",
+          icon: <Code2 className="w-3 h-3" />,
+          class: "text-zinc-200 bg-zinc-800",
+        };
+      case "community":
+        return {
+          label: "Communauté",
+          icon: <HeartHandshake className="w-3 h-3" />,
+          class: "text-zinc-200 bg-zinc-800",
+        };
+      default:
+        return {
+          label: riskLevel,
+          icon: <Circle className="w-3 h-3 fill-zinc-500" />,
+          class: "text-zinc-500 bg-zinc-800",
+        };
+    }
   };
 
   return (
@@ -209,40 +268,40 @@ export default function RedditStrategyForm({ onAnalysisComplete }: RedditStrateg
       {result && (
         <div className="mt-12 space-y-8">
           {/* Analyse du site */}
-          <section className="p-6 rounded-xl bg-zinc-900">
-            <h2 className="text-xl font-semibold text-zinc-100 mb-6">
+          <section className="p-6 rounded-xl bg-zinc-900/50 border border-zinc-800">
+            <h2 className="text-lg font-medium text-zinc-100 mb-4">
               {tResults("websiteAnalysis")}
             </h2>
-            <dl className="space-y-5">
+            <dl className="space-y-4">
               <div className="flex items-start gap-3">
-                <Target className="w-5 h-5 text-orange-500 mt-0.5 shrink-0" />
-                <div>
-                  <dt className="text-sm font-medium text-zinc-400">
+                <Target className="w-4 h-4 text-orange-400 mt-0.5 shrink-0" />
+                <div className="flex-1">
+                  <dt className="text-xs font-medium text-zinc-500 mb-1">
                     {tResults("coreProblem")}
                   </dt>
-                  <dd className="mt-1 text-zinc-100">
+                  <dd className="text-sm text-zinc-300">
                     {result.websiteAnalysis.coreProblem}
                   </dd>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Users className="w-5 h-5 text-orange-500 mt-0.5 shrink-0" />
-                <div>
-                  <dt className="text-sm font-medium text-zinc-400">
+                <Users className="w-4 h-4 text-orange-400 mt-0.5 shrink-0" />
+                <div className="flex-1">
+                  <dt className="text-xs font-medium text-zinc-500 mb-1">
                     {tResults("targetAudience")}
                   </dt>
-                  <dd className="mt-1 text-zinc-100">
+                  <dd className="text-sm text-zinc-300">
                     {result.websiteAnalysis.targetAudience}
                   </dd>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Layers className="w-5 h-5 text-orange-500 mt-0.5 shrink-0" />
-                <div>
-                  <dt className="text-sm font-medium text-zinc-400">
+                <Layers className="w-4 h-4 text-orange-400 mt-0.5 shrink-0" />
+                <div className="flex-1">
+                  <dt className="text-xs font-medium text-zinc-500 mb-1">
                     {tResults("maturityLevel")}
                   </dt>
-                  <dd className="mt-1 text-zinc-100">
+                  <dd className="text-sm text-zinc-300">
                     {result.websiteAnalysis.maturityLevel}
                   </dd>
                 </div>
@@ -251,41 +310,40 @@ export default function RedditStrategyForm({ onAnalysisComplete }: RedditStrateg
           </section>
 
           {/* Subreddits recommandés */}
-          <section className="p-6 rounded-xl bg-zinc-900">
-            <h2 className="text-xl font-semibold text-zinc-100 mb-6">
+          <section className="p-6 rounded-xl bg-zinc-900/50 border border-zinc-800">
+            <h2 className="text-lg font-medium text-zinc-100 mb-4">
               {tResults("subreddits")}
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {result.subreddits.map((sub, index) => {
                 const riskBadge = getRiskBadge(sub.moderationRisk);
                 return (
                   <div
                     key={index}
-                    className="p-4 rounded-lg bg-zinc-800"
+                    className="p-4 rounded-lg bg-zinc-800/50 border border-zinc-800 hover:border-zinc-700 transition-colors"
                   >
-                    <div className="flex flex-wrap items-center gap-3 mb-3">
-                      <h3 className="font-semibold text-orange-500">
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
+                      <h3 className="font-semibold text-orange-400 text-sm">
                         r/{sub.name}
                       </h3>
                       <span
-                        className={`text-sm font-medium ${getScoreColor(
+                        className={`text-xs font-medium ${getScoreColor(
                           sub.relevanceScore
                         )}`}
                       >
-                        {tResults("relevance")}: {sub.relevanceScore}/5
+                        {sub.relevanceScore}/5
                       </span>
                       <span
-                        className={`text-xs px-2.5 py-1 rounded-md font-medium flex items-center gap-1.5 ${riskBadge.class}`}
+                        className={`text-xs px-2 py-0.5 rounded font-medium flex items-center gap-1 ${riskBadge.class}`}
                       >
                         {riskBadge.icon}
-                        {tResults("risk")}: {sub.moderationRisk}
+                        {riskBadge.label}
                       </span>
                     </div>
-                    <p className="text-sm text-zinc-300 mb-2">
-                      <span className="font-medium text-zinc-200">{tResults("recommendedAngle")}:</span>{" "}
-                      {sub.recommendedAngle}
+                    <p className="text-xs text-zinc-400 mb-2">
+                      <span className="text-zinc-300">{sub.recommendedAngle}</span>
                     </p>
-                    <p className="text-sm text-zinc-400">
+                    <p className="text-xs text-zinc-500 leading-relaxed">
                       {sub.explanation}
                     </p>
                   </div>
@@ -294,72 +352,128 @@ export default function RedditStrategyForm({ onAnalysisComplete }: RedditStrateg
             </div>
           </section>
 
-          {/* Post Reddit prêt */}
-          <section className="p-6 rounded-xl bg-zinc-900">
-            <h2 className="text-xl font-semibold text-zinc-100 mb-6">
+          {/* Posts Reddit prêts - 5 options */}
+          <section className="p-6 rounded-xl bg-zinc-900/50 border border-zinc-800">
+            <h2 className="text-lg font-medium text-zinc-100 mb-4">
               {tResults("redditPost")}
             </h2>
-            <div className="p-5 rounded-lg bg-zinc-800">
-              <h3 className="font-semibold text-zinc-100 mb-4 pb-4 border-b border-zinc-700">
-                {result.redditPost.title}
-              </h3>
-              <div className="text-zinc-300 whitespace-pre-wrap text-sm leading-relaxed">
-                {result.redditPost.body}
-              </div>
+            
+            {/* Sélecteur d'options */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {result.redditPost.options.map((option, index) => {
+                const badge = getRiskLevelBadge(option.riskLevel);
+                const isSelected = selectedPostIndex === index;
+                return (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setSelectedPostIndex(index);
+                      setCopied(false);
+                    }}
+                    className={`px-3 py-2 rounded-lg text-xs font-medium transition-all border ${
+                      isSelected
+                        ? "bg-orange-600 text-white border-orange-600"
+                        : "bg-zinc-800/50 text-zinc-400 border-zinc-800 hover:border-zinc-700 hover:text-zinc-300"
+                    }`}
+                  >
+                    <span className="flex items-center gap-1.5">
+                      {badge.icon}
+                      {badge.label}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
-            <button
-              onClick={handleCopy}
-              className="mt-4 px-4 py-2 text-sm rounded-lg bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-colors flex items-center gap-2"
-            >
-              {copied ? (
-                <>
-                  <Check className="w-4 h-4 text-emerald-500" />
-                  {tResults("copied")}
-                </>
-              ) : (
-                <>
-                  <Copy className="w-4 h-4" />
-                  {tResults("copy")}
-                </>
-              )}
-            </button>
+
+            {/* Post sélectionné */}
+            {result.redditPost.options[selectedPostIndex] && (
+              <>
+                <div className="p-5 rounded-lg bg-zinc-800/50 border border-zinc-800 mb-4">
+                  <div className="flex items-center gap-2 mb-4 pb-3 border-b border-zinc-800">
+                    <span className="text-xs text-zinc-500">
+                      {result.redditPost.options[selectedPostIndex].expectedEngagement}
+                    </span>
+                  </div>
+                  <h3 className="font-medium text-zinc-100 mb-4 text-base">
+                    {result.redditPost.options[selectedPostIndex].title}
+                  </h3>
+                  <div className="text-zinc-400 whitespace-pre-wrap text-sm leading-relaxed mb-4">
+                    {result.redditPost.options[selectedPostIndex].body}
+                  </div>
+                  <div className="pt-4 mt-4 border-t border-zinc-800">
+                    <p className="text-xs text-zinc-500 mb-2">Stratégie :</p>
+                    <p className="text-xs text-zinc-400 leading-relaxed">
+                      {result.redditPost.options[selectedPostIndex].explanation}
+                    </p>
+                  </div>
+                  {result.redditPost.options[selectedPostIndex].bestSubreddits.length > 0 && (
+                    <div className="mt-4 pt-4 border-t border-zinc-800">
+                      <p className="text-xs text-zinc-500 mb-2">Subreddits recommandés :</p>
+                      <div className="flex flex-wrap gap-2">
+                        {result.redditPost.options[selectedPostIndex].bestSubreddits.map((sub, idx) => (
+                          <span key={idx} className="text-xs px-2 py-1 rounded bg-zinc-800 text-orange-400 font-mono">
+                            {sub}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <button
+                  onClick={handleCopy}
+                  className="px-4 py-2 text-sm rounded-lg bg-zinc-800/50 border border-zinc-800 text-zinc-300 hover:border-zinc-700 hover:bg-zinc-800 transition-all flex items-center gap-2"
+                >
+                  {copied ? (
+                    <>
+                      <Check className="w-4 h-4 text-orange-400" />
+                      <span className="text-orange-400">{tResults("copied")}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-4 h-4" />
+                      {tResults("copy")}
+                    </>
+                  )}
+                </button>
+              </>
+            )}
           </section>
 
           {/* Estimations réalistes */}
-          <section className="p-6 rounded-xl bg-zinc-900">
-            <h2 className="text-xl font-semibold text-zinc-100 mb-6">
+          <section className="p-6 rounded-xl bg-zinc-900/50 border border-zinc-800">
+            <h2 className="text-lg font-medium text-zinc-100 mb-4">
               {tResults("estimates")}
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-              <div className="p-4 rounded-lg bg-zinc-800">
-                <div className="flex items-center gap-2 mb-2">
-                  <MousePointer className="w-4 h-4 text-zinc-400" />
-                  <p className="text-sm text-zinc-400">{tResults("clicks")}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+              <div className="p-4 rounded-lg bg-zinc-800/50 border border-zinc-800">
+                <div className="flex items-center gap-2 mb-1">
+                  <MousePointer className="w-3.5 h-3.5 text-zinc-500" />
+                  <p className="text-xs text-zinc-500">{tResults("clicks")}</p>
                 </div>
-                <p className="text-lg font-semibold text-zinc-100">
+                <p className="text-base font-medium text-zinc-200">
                   {result.realisticEstimates.clicksRange}
                 </p>
               </div>
-              <div className="p-4 rounded-lg bg-zinc-800">
-                <div className="flex items-center gap-2 mb-2">
-                  <MessageSquare className="w-4 h-4 text-zinc-400" />
-                  <p className="text-sm text-zinc-400">{tResults("comments")}</p>
+              <div className="p-4 rounded-lg bg-zinc-800/50 border border-zinc-800">
+                <div className="flex items-center gap-2 mb-1">
+                  <MessageSquare className="w-3.5 h-3.5 text-zinc-500" />
+                  <p className="text-xs text-zinc-500">{tResults("comments")}</p>
                 </div>
-                <p className="text-lg font-semibold text-zinc-100">
+                <p className="text-base font-medium text-zinc-200">
                   {result.realisticEstimates.commentsRange}
                 </p>
               </div>
             </div>
             {result.realisticEstimates.warning && (
               <div
-                className={`p-4 rounded-lg flex items-start gap-3 ${
+                className={`p-4 rounded-lg flex items-start gap-3 border ${
                   result.realisticEstimates.worthIt
-                    ? "bg-emerald-600/15 text-emerald-400"
-                    : "bg-amber-600/15 text-amber-400"
-                } text-sm`}
+                    ? "bg-orange-950/20 border-orange-900/30 text-orange-300"
+                    : "bg-zinc-800/50 border-zinc-800 text-zinc-400"
+                } text-xs`}
               >
-                <TrendingUp className="w-5 h-5 shrink-0 mt-0.5" />
-                <p>{result.realisticEstimates.warning}</p>
+                <TrendingUp className="w-4 h-4 shrink-0 mt-0.5" />
+                <p className="leading-relaxed">{result.realisticEstimates.warning}</p>
               </div>
             )}
           </section>

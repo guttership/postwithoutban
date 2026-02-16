@@ -1,57 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import Groq from "groq-sdk";
+import OpenAI from "openai";
+import { verifyAccessToken, updateAccessStats } from "@/lib/auth";
+import { getSystemPrompt, getUserPrompt } from "@/lib/prompts";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
+// Initialisation des clients API
+const groq = process.env.GROQ_API_KEY ? new Groq({
+  apiKey: process.env.GROQ_API_KEY,
+}) : null;
 
-const SYSTEM_PROMPT = `Tu es un expert en strategie Reddit pour les indie hackers et solopreneurs.
+const openai = process.env.OPENAI_API_KEY ? new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+}) : null;
 
-Ton objectif n'est PAS le marketing.
-Ton objectif est d'aider les utilisateurs a poster sur Reddit SANS se faire bannir ou downvoter.
-
-Regles que tu dois toujours suivre:
-- Reddit deteste le langage marketing
-- Considere chaque subreddit comme hostile a l'auto-promotion par defaut
-- Privilegie l'humilite, la demande de feedback, et le partage d'experience
-- Ne promets jamais de viralite ou de croissance
-- Estime toujours les resultats de maniere conservative et realiste
-
-Tu vas recevoir une URL de site SaaS et optionnellement une description.
-
-Tu dois retourner un JSON valide (sans markdown, sans backticks) avec cette structure exacte:
-{
-  "websiteAnalysis": {
-    "coreProblem": "Le probleme principal que resout ce produit (douleur utilisateur, pas les fonctionnalites)",
-    "targetAudience": "L'audience cible",
-    "maturityLevel": "early idea / MVP / launched"
-  },
-  "subreddits": [
-    {
-      "name": "NomDuSubreddit",
-      "relevanceScore": 4,
-      "moderationRisk": "Low",
-      "recommendedAngle": "Feedback request",
-      "explanation": "Pourquoi cet angle fonctionne ici"
-    }
-  ],
-  "redditPost": {
-    "title": "Titre du post Reddit (naturel, pas promotionnel)",
-    "body": "Corps du post (ton naturel, pas de hype, pas d'emojis, pas de CTA marketing)"
-  },
-  "realisticEstimates": {
-    "clicksRange": "10-30 clics",
-    "commentsRange": "2-8 commentaires",
-    "worthIt": true,
-    "warning": "Avertissement honnete sur les attentes"
-  }
-}
-
-IMPORTANT:
-- Retourne UNIQUEMENT du JSON valide, rien d'autre
-- moderationRisk doit etre "Low", "Medium" ou "High"
-- relevanceScore doit etre un nombre entre 1 et 5
-- Maximum 5 subreddits
-- Le post doit etre en francais
-- Sois honnete, meme si la conclusion est "ne postez pas ici"`;
 
 async function fetchWebsiteContent(url: string): Promise<string> {
   try {
@@ -67,23 +28,121 @@ async function fetchWebsiteContent(url: string): Promise<string> {
     
     const html = await response.text();
     
-    // Extraction basique du texte visible (titre, meta description, headings, paragraphes)
+    // Fonction pour nettoyer les tags HTML et decoder les entites
+    const cleanTag = (tag: string) => {
+      return tag
+        .replace(/<[^>]+>/g, "") // Enlever tags HTML
+        .replace(/&nbsp;/g, " ") // Decoder entites
+        .replace(/&amp;/g, "&")
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/\s+/g, " ") // Normaliser espaces
+        .trim();
+    };
+    
+    // Extraire le body content (on ignore header, footer, nav, script, style)
+    const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
+    let bodyContent = bodyMatch ? bodyMatch[1] : html;
+    
+    // Nettoyer le contenu (enlever scripts, styles, nav, footer)
+    bodyContent = bodyContent
+      .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, "")
+      .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "")
+      .replace(/<nav[^>]*>[\s\S]*?<\/nav>/gi, "")
+      .replace(/<footer[^>]*>[\s\S]*?<\/footer>/gi, "")
+      .replace(/<header[^>]*>[\s\S]*?<\/header>/gi, "");
+    
+    // Extraction enrichie
     const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
     const metaDescMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']+)["']/i);
-    const h1Matches = html.match(/<h1[^>]*>([^<]+)<\/h1>/gi) || [];
-    const h2Matches = html.match(/<h2[^>]*>([^<]+)<\/h2>/gi) || [];
+    const ogTitleMatch = html.match(/<meta[^>]*property=["']og:title["'][^>]*content=["']([^"']+)["']/i);
+    const ogDescMatch = html.match(/<meta[^>]*property=["']og:description["'][^>]*content=["']([^"']+)["']/i);
     
-    // Nettoyer les tags HTML des headings
-    const cleanTag = (tag: string) => tag.replace(/<[^>]+>/g, "").trim();
+    // Headings
+    const h1Matches = bodyContent.match(/<h1[^>]*>([^<]+)<\/h1>/gi) || [];
+    const h2Matches = bodyContent.match(/<h2[^>]*>([^<]+)<\/h2>/gi) || [];
+    const h3Matches = bodyContent.match(/<h3[^>]*>([^<]+)<\/h3>/gi) || [];
+    
+    // Paragraphes (on prend les 10 premiers significatifs)
+    const pMatches = bodyContent.match(/<p[^>]*>[\s\S]*?<\/p>/gi) || [];
+    const paragraphs = pMatches
+      .map(cleanTag)
+      .filter(p => p.length > 30) // Ignore les paragraphes trop courts
+      .slice(0, 10);
+    
+    // Listes (ul/ol) - souvent utilisees pour les features
+    const listMatches = bodyContent.match(/<(?:ul|ol)[^>]*>([\s\S]*?)<\/(?:ul|ol)>/gi) || [];
+    const bulletPoints: string[] = [];
+    listMatches.slice(0, 3).forEach(list => {
+      const items = list.match(/<li[^>]*>([\s\S]*?)<\/li>/gi) || [];
+      items.forEach(item => {
+        const cleaned = cleanTag(item);
+        if (cleaned.length > 10 && cleaned.length < 200) {
+          bulletPoints.push(cleaned);
+        }
+      });
+    });
+    
+    // Call-to-Actions (boutons, liens avec des classes communes)
+    const ctaMatches = bodyContent.match(/<(?:a|button)[^>]*(?:class=["'][^"']*(?:btn|button|cta|action|primary|signup|start|try|demo)[^"']*["'])[^>]*>([^<]+)<\/(?:a|button)>/gi) || [];
+    const ctas = ctaMatches
+      .map(cleanTag)
+      .filter(cta => cta.length > 0 && cta.length < 50)
+      .slice(0, 5);
+    
+    // Recherche de pricing keywords dans le texte
+    const pricingPattern = /([\$€£]\d+|gratuit|free|trial|essai|\d+[€$£]?\s*(?:\/|par)\s*(?:mois|month|an|year)|pricing|tarif)/gi;
+    const pricingMatches = bodyContent.match(pricingPattern) || [];
+    const hasPricing = pricingMatches.length > 0;
+    
+    // Extraction des mots-cles recurrents (feature keywords)
+    const textContent = cleanTag(bodyContent);
+    const words = textContent.toLowerCase().split(/\s+/);
+    const wordFreq: Record<string, number> = {};
+    const stopWords = new Set(['le', 'la', 'les', 'un', 'une', 'des', 'de', 'du', 'et', 'ou', 'mais', 'pour', 'avec', 'sans', 'sur', 'dans', 'par', 'the', 'a', 'an', 'and', 'or', 'but', 'for', 'with', 'to', 'of', 'in', 'on', 'at', 'is', 'are', 'was', 'were', 'your', 'you', 'that', 'this', 'it', 'be', 'have', 'has']);
+    
+    words.forEach(word => {
+      if (word.length > 4 && !stopWords.has(word) && /^[a-z]+$/.test(word)) {
+        wordFreq[word] = (wordFreq[word] || 0) + 1;
+      }
+    });
+    
+    const topKeywords = Object.entries(wordFreq)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 15)
+      .map(([word]) => word);
+    
+    // Recherche de social proof (nombres, stats, testimonials)
+    const statsPattern = /(\d+[k|K|M]?\+?\s*(?:users|clients|customers|entreprises|companies|downloads|telechargements))/gi;
+    const statsMatches = bodyContent.match(statsPattern) || [];
+    
+    // Tentative d'identifier la value proposition (souvent dans le hero)
+    const heroPattern = /<(?:div|section)[^>]*(?:class|id)=["'][^"']*(?:hero|banner|jumbotron|main|landing)[^"']*["'][^>]*>([\s\S]{0,500})<\/(?:div|section)>/i;
+    const heroMatch = bodyContent.match(heroPattern);
+    const heroText = heroMatch ? cleanTag(heroMatch[1]).slice(0, 300) : "";
     
     const content = {
       title: titleMatch ? titleMatch[1].trim() : "",
       metaDescription: metaDescMatch ? metaDescMatch[1].trim() : "",
+      ogTitle: ogTitleMatch ? ogTitleMatch[1].trim() : "",
+      ogDescription: ogDescMatch ? ogDescMatch[1].trim() : "",
       h1: h1Matches.slice(0, 3).map(cleanTag),
-      h2: h2Matches.slice(0, 5).map(cleanTag),
+      h2: h2Matches.slice(0, 6).map(cleanTag),
+      h3: h3Matches.slice(0, 4).map(cleanTag),
+      paragraphs: paragraphs,
+      bulletPoints: bulletPoints.slice(0, 15),
+      ctas: ctas,
+      hasPricing: hasPricing,
+      pricingKeywords: [...new Set(pricingMatches)].slice(0, 5),
+      topKeywords: topKeywords,
+      socialProof: statsMatches.slice(0, 3),
+      valueProposition: heroText || paragraphs[0] || "",
+      wordCount: words.length,
     };
     
-    return JSON.stringify(content);
+    return JSON.stringify(content, null, 2);
   } catch (error) {
     console.error("Erreur fetch website:", error);
     return "Impossible d'acceder au site web";
@@ -92,7 +151,30 @@ async function fetchWebsiteContent(url: string): Promise<string> {
 
 export async function POST(request: NextRequest) {
   try {
-    const { url, description } = await request.json();
+    // Vérification de sécurité : vérifier le token d'accès
+    const referer = request.headers.get("referer") || "";
+    const isDemoRequest = referer.includes("/demo");
+
+    // Si ce n'est pas une requête depuis /demo, vérifier le token
+    if (!isDemoRequest) {
+      const accessToken = request.cookies.get("pwb_access")?.value;
+      const accessCheck = await verifyAccessToken(accessToken);
+
+      if (!accessCheck.valid) {
+        console.warn("[Security] API analyze called without valid access token");
+        return NextResponse.json(
+          { error: "Accès non autorisé. Vous devez avoir un accès actif pour utiliser cette fonctionnalité." },
+          { status: 401 }
+        );
+      }
+
+      // Mettre à jour les stats d'accès
+      if (accessCheck.purchaseId) {
+        await updateAccessStats(accessCheck.purchaseId);
+      }
+    }
+
+    const { url, description, language } = await request.json();
 
     if (!url) {
       return NextResponse.json(
@@ -101,43 +183,66 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!process.env.GEMINI_API_KEY) {
-      return NextResponse.json(
-        { error: "Cle API Gemini non configuree. Ajoutez GEMINI_API_KEY dans .env" },
-        { status: 500 }
-      );
-    }
+    // Déterminer la langue (défaut: 'fr')
+    const lang = language === 'en' ? 'en' : 'fr';
 
     // Recuperer le contenu du site web
     const websiteContent = await fetchWebsiteContent(url);
 
-    // Construire le prompt utilisateur
-    const userPrompt = `Analyse ce site SaaS et genere une strategie Reddit:
+    // Construire le prompt utilisateur enrichi avec la bonne langue
+    const userPrompt = getUserPrompt(url, description, websiteContent, lang);
 
-URL: ${url}
-Contenu extrait du site: ${websiteContent}
-${description ? `Description fournie par l'utilisateur: ${description}` : ""}
+    // Récupérer le système prompt dans la bonne langue
+    const systemPromptContent = getSystemPrompt(lang);
 
-Retourne uniquement le JSON, sans aucun texte avant ou apres.`;
-
-    // Appel a Gemini
-    const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
+    // Fonction pour appeler l'API (OpenAI ou Groq)
+    let text = "";
     
-    const result = await model.generateContent({
-      contents: [
-        {
-          role: "user",
-          parts: [{ text: SYSTEM_PROMPT + "\n\n" + userPrompt }],
-        },
-      ],
-      generationConfig: {
-        temperature: 0.7,
-        maxOutputTokens: 2048,
-      },
-    });
-
-    const response = result.response;
-    const text = response.text();
+    // Priorité à OpenAI si disponible, sinon Groq
+    if (openai) {
+      console.log("[API] Utilisation d'OpenAI");
+      const completion = await openai.chat.completions.create({
+        messages: [
+          {
+            role: "system",
+            content: systemPromptContent,
+          },
+          {
+            role: "user",
+            content: userPrompt,
+          },
+        ],
+        model: "gpt-4o-mini", // Modèle économique et performant
+        temperature: 0.8,
+        max_tokens: 8192,
+        response_format: { type: "json_object" },
+      });
+      text = completion.choices[0]?.message?.content || "";
+    } else if (groq) {
+      console.log("[API] Utilisation de Groq");
+      const completion = await groq.chat.completions.create({
+        messages: [
+          {
+            role: "system",
+            content: systemPromptContent,
+          },
+          {
+            role: "user",
+            content: userPrompt,
+          },
+        ],
+        model: "llama-3.3-70b-versatile",
+        temperature: 0.8,
+        max_tokens: 8192,
+        response_format: { type: "json_object" },
+      });
+      text = completion.choices[0]?.message?.content || "";
+    } else {
+      return NextResponse.json(
+        { error: "Aucune clé API configurée. Ajoutez OPENAI_API_KEY ou GROQ_API_KEY dans .env" },
+        { status: 500 }
+      );
+    }
     
     // Nettoyer la reponse (enlever les backticks markdown si presents)
     let cleanedText = text.trim();

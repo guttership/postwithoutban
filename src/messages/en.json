@@ -30,7 +30,7 @@
   "pricing": {
     "title": "Simple pricing, lifetime access",
     "subtitle": "No subscription, no hidden fees. Pay once, use forever.",
-    "price": "29",
+    "price": "99",
     "currency": "EUR",
     "period": "lifetime",
     "cta": "Get lifetime access",
@@ -95,5 +95,76 @@
     "tryAgain": "Try again",
     "noAccount": "No access yet?",
     "buyAccess": "Buy access"
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated",
+      "section1": {
+        "title": "1. Information Collection",
+        "content": "We collect personal data that you voluntarily provide, including your email address when creating an account or purchasing access. We do not use advertising trackers. Vercel automatically collects your IP address and location to ensure the service functions properly."
+      },
+      "section2": {
+        "title": "2. Use of Data",
+        "content": "Your data is used to: send your access link via email, ensure the service operates properly, and contact you if needed for technical support. We never sell your data to third parties."
+      },
+      "section3": {
+        "title": "3. Security",
+        "content": "Your data is securely stored in our SQLite database. Payments are processed 100% securely by Stripe, and we never have access to banking information."
+      },
+      "section4": {
+        "title": "4. GDPR & Privacy Rights",
+        "content": "You have the right to access, modify, or delete your personal data. Contact us at designmoiunmouton@gmail.com to exercise your rights."
+      },
+      "section5": {
+        "title": "5. Cookies",
+        "content": "We use a cookie named 'locale' to remember your language choice. No tracking cookies are used."
+      }
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "lastUpdated": "Last updated",
+      "section1": {
+        "title": "1. Acceptance of Terms",
+        "content": "By using PostWithoutBan, you accept these terms of service and our privacy policy."
+      },
+      "section2": {
+        "title": "2. License of Use",
+        "content": "Purchasing lifetime access gives you the right to use PostWithoutBan for personal, non-commercial purposes. You cannot resell, transfer, or share your access."
+      },
+      "section3": {
+        "title": "3. Limitation of Liability",
+        "content": "PostWithoutBan uses AI to generate Reddit strategies. We are not responsible for the consequences of your usage, including subreddit bans. Use strategies at your own risk."
+      },
+      "section4": {
+        "title": "4. Service Modifications",
+        "content": "We reserve the right to modify or discontinue the service at any time. Purchased access will remain valid as long as the service exists."
+      },
+      "section5": {
+        "title": "5. Applicable Law",
+        "content": "These terms are governed by French law. Any disputes will be resolved amicably or through competent courts."
+      }
+    },
+    "footer": {
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "contact": "Contact",
+      "contactEmail": "designmoiunmouton@gmail.com"
+    }
+  },
+  "upgrade": {
+    "title": "Upgrade to Full Access",
+    "description": "You've reached your free limit. Unlock unlimited analyses for life.",
+    "cta": "Get Full Access Now",
+    "cancel": "Maybe later",
+    "secure": "Secure payment powered by Stripe",
+    "highlight": "No subscription, no hidden fees. Pay once, use forever.",
+    "features": [
+      "Unlimited analyses",
+      "All subreddits",
+      "AI-generated posts",
+      "Future updates included",
+      "Email support"
+    ]
   }
 }

@@ -1,56 +1,24 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { AlertTriangle, Loader2 } from "lucide-react";
+import { AlertTriangle } from "lucide-react";
 import Navbar from "../components/Navbar";
 import RedditStrategyForm from "../components/RedditStrategyForm";
+import { verifyAccessToken } from "@/lib/auth";
 
-export default function AppPage() {
-  const t = useTranslations();
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasAccess, setHasAccess] = useState(false);
-  const [userEmail, setUserEmail] = useState<string | null>(null);
+export default async function AppPage() {
+  // Vérification serveur du token d'accès
+  const cookieStore = await cookies();
+  const accessToken = cookieStore.get("pwb_access")?.value;
+  
+  const accessCheck = await verifyAccessToken(accessToken);
 
-  useEffect(() => {
-    const checkAccess = async () => {
-      try {
-        const response = await fetch("/api/access");
-        const data = await response.json();
-
-        if (data.valid) {
-          setHasAccess(true);
-          setUserEmail(data.email);
-        } else {
-          // Pas d'accès, rediriger vers pricing
-          router.push("/pricing");
-        }
-      } catch {
-        router.push("/pricing");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    checkAccess();
-  }, [router]);
-
-  if (isLoading) {
-    return (
-      <>
-        <Navbar />
-        <div className="min-h-screen bg-zinc-950 pt-32 flex items-center justify-center">
-          <Loader2 className="w-12 h-12 text-orange-500 animate-spin" />
-        </div>
-      </>
-    );
+  // Si pas d'accès valide, rediriger vers pricing
+  if (!accessCheck.valid) {
+    redirect("/pricing");
   }
 
-  if (!hasAccess) {
-    return null; // Redirection en cours
-  }
+  const userEmail = accessCheck.email;
 
   return (
     <>
@@ -63,7 +31,7 @@ export default function AppPage() {
               Post Without Ban
             </h1>
             <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
-              {t("hero.subtitle")}
+              <TranslatedSubtitle />
             </p>
             {userEmail && (
               <p className="text-sm text-zinc-500 mt-2">
@@ -73,11 +41,10 @@ export default function AppPage() {
           </div>
 
           {/* Avertissement */}
-          <div className="mb-8 p-4 rounded-lg bg-orange-600/15 text-orange-400 text-sm flex items-start gap-3">
+          <div className="mb-8 p-4 rounded-lg bg-zinc-900/50 border border-orange-600/30 text-orange-400 text-sm flex items-start gap-3">
             <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5" />
             <div>
-              <p className="font-medium mb-1">{t("warning.title")}</p>
-              <p className="text-orange-400/80">{t("warning.message")}</p>
+              <WarningContent />
             </div>
           </div>
 
@@ -85,6 +52,22 @@ export default function AppPage() {
           <RedditStrategyForm />
         </div>
       </div>
+    </>
+  );
+}
+
+// Composants client pour les traductions
+function TranslatedSubtitle() {
+  const t = useTranslations();
+  return <>{t("hero.subtitle")}</>;
+}
+
+function WarningContent() {
+  const t = useTranslations();
+  return (
+    <>
+      <p className="font-medium mb-1">{t("warning.title")}</p>
+      <p className="text-orange-400/80">{t("warning.message")}</p>
     </>
   );
 }

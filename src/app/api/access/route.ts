@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import {
+  validateAndCreateSession,
+  checkRateLimit,
+} from "@/lib/session-security";
 
 // Liste des emails admin (séparés par des virgules dans .env)
 function isAdmin(email: string): boolean {
@@ -9,44 +13,74 @@ function isAdmin(email: string): boolean {
 
 export async function POST(request: NextRequest) {
   try {
-    const { token } = await request.json();
+    const { token, email } = await request.json();
 
-    if (!token) {
+    if (!token || !email) {
       return NextResponse.json(
-        { error: "Token manquant" },
+        { error: "Token et email requis" },
         { status: 400 }
       );
     }
 
-    // Vérifier si le token existe et est actif
-    const purchase = await prisma.purchase.findUnique({
-      where: { accessToken: token },
-    });
-
-    if (!purchase) {
+    // Rate limiting
+    const rateLimitCheck = checkRateLimit(token);
+    if (!rateLimitCheck.allowed) {
       return NextResponse.json(
-        { error: "Token invalide", valid: false },
+        { error: "Trop de requetes. Veuillez reessayer plus tard." },
+        { status: 429 }
+      );
+    }
+
+    // Normaliser l'email
+    const normalizedEmail = email.toLowerCase().trim();
+
+    // Validation complète de la session avec détection du partage
+    const sessionCheck = await validateAndCreateSession(request, token);
+
+    if (!sessionCheck.valid) {
+      // Retourner l'erreur appropriée
+      if (sessionCheck.suspiciousActivity === "multiple_sessions") {
+        return NextResponse.json(
+          { error: sessionCheck.error, valid: false },
+          { status: 403 }
+        );
+      }
+      if (sessionCheck.suspiciousActivity === "rapid_ip_change") {
+        return NextResponse.json(
+          { error: sessionCheck.error, valid: false },
+          { status: 403 }
+        );
+      }
+      return NextResponse.json(
+        { error: sessionCheck.error, valid: false },
         { status: 401 }
       );
     }
 
-    if (!purchase.isActive) {
+    // Vérifier que l'email correspond au token
+    const purchase = await prisma.purchase.findUnique({
+      where: { accessToken: token },
+    });
+
+    if (!purchase || purchase.email.toLowerCase() !== normalizedEmail) {
+      console.warn(
+        `[Security] Email mismatch: token=${token}, email fourni=${normalizedEmail}, email correct=${purchase?.email}`
+      );
       return NextResponse.json(
-        { error: "Accès désactivé", valid: false },
-        { status: 403 }
+        { error: "Token ou email invalide", valid: false },
+        { status: 401 }
       );
     }
 
-    // Mettre à jour les stats d'accès
-    await prisma.purchase.update({
-      where: { id: purchase.id },
-      data: {
-        lastAccessAt: new Date(),
-        accessCount: { increment: 1 },
-      },
-    });
+    // Marquer comme activé
+    if (!purchase.activatedAt) {
+      await prisma.purchase.update({
+        where: { id: purchase.id },
+        data: { activatedAt: new Date() },
+      });
+    }
 
-    // Créer une réponse avec cookie de session
+    // Réponse succès
     const response = NextResponse.json({
       valid: true,
       email: purchase.email,
@@ -57,15 +91,17 @@ export async function POST(request: NextRequest) {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 30, // 30 jours
+      maxAge: 60 * 60 * 24 * 30,
       path: "/",
     });
+
+    console.log(`[Access] Acces valide: ${purchase.email}`);
 
     return response;
   } catch (error) {
     console.error("Access verification error:", error);
     return NextResponse.json(
-      { error: "Erreur de vérification" },
+      { error: "Erreur de verification" },
       { status: 500 }
     );
   }

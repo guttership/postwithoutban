@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -20,12 +20,12 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -69,11 +69,36 @@ model Purchase {
   accessToken     String   @unique
   stripeSessionId String   @unique
   stripeCustomerId String?
+  language        String   @default("fr") // 'fr' ou 'en'
   createdAt       DateTime @default(now())
+  activatedAt     DateTime?
   lastAccessAt    DateTime?
   accessCount     Int      @default(0)
   isActive        Boolean  @default(true)
+  
+  // Tracking des sessions pour détection du partage
+  activeSessions  ActiveSession[]
 
   @@index([email])
   @@index([accessToken])
+}
+
+// Modèle pour tracker les sessions actives d'un token
+model ActiveSession {
+  id          String   @id @default(cuid())
+  purchaseId  String
+  purchase    Purchase @relation(fields: [purchaseId], references: [id], onDelete: Cascade)
+  
+  // Info de la session
+  ipAddress   String
+  userAgent   String
+  deviceHash  String    // Hash du device (User-Agent + screen size)
+  
+  // Timing
+  firstSeenAt DateTime @default(now())
+  lastSeenAt  DateTime @default(now())
+  expiresAt   DateTime
+  
+  @@index([purchaseId])
+  @@index([deviceHash])
 }

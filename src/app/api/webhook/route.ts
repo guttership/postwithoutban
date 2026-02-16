@@ -48,10 +48,12 @@ export async function POST(request: NextRequest) {
         const customerEmail = session.customer_details?.email;
         const customerId = session.customer as string | null;
         const sessionId = session.id;
+        const language = (session.metadata?.language as 'en' | 'fr') || 'fr';
 
         console.log("✅ Paiement réussi!");
         console.log("   Email:", customerEmail);
         console.log("   Session ID:", sessionId);
+        console.log("   Language:", language);
 
         if (customerEmail) {
           // Vérifier si ce paiement a déjà été traité (idempotence)
@@ -74,6 +76,7 @@ export async function POST(request: NextRequest) {
               accessToken: accessToken,
               stripeSessionId: sessionId,
               stripeCustomerId: customerId,
+              language: language,
               isActive: true,
             },
             create: {
@@ -81,16 +84,18 @@ export async function POST(request: NextRequest) {
               accessToken: accessToken,
               stripeSessionId: sessionId,
               stripeCustomerId: customerId,
+              language: language,
             },
           });
 
           console.log("   Access Token généré:", accessToken);
           
-          // Envoyer email avec le lien d'accès
+          // Envoyer email avec le lien d'accès dans la bonne langue
           if (process.env.RESEND_API_KEY) {
             await sendAccessEmail({
               to: customerEmail,
               accessToken: accessToken,
+              language: language,
             });
           }
         }

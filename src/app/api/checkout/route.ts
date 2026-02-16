@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
   apiVersion: "2025-12-15.clover",
 });
 
-export async function POST() {
+export async function POST(request: NextRequest) {
   try {
     if (!process.env.STRIPE_SECRET_KEY) {
       return NextResponse.json(
@@ -13,6 +13,10 @@ export async function POST() {
         { status: 500 }
       );
     }
+
+    // Récupérer la langue depuis le corps de la requête (défaut: 'fr')
+    const body = await request.json().catch(() => ({}));
+    const language = body.language === 'en' ? 'en' : 'fr';
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -25,6 +29,9 @@ export async function POST() {
       mode: "payment",
       success_url: `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/pricing`,
+      metadata: {
+        language: language, // Stocker la langue dans les metadata
+      },
     });
 
     return NextResponse.json({ url: session.url });

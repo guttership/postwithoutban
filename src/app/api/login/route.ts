@@ -10,7 +10,7 @@ function isAdmin(email: string): boolean {
 
 export async function POST(request: NextRequest) {
   try {
-    const { email } = await request.json();
+    const { email, language } = await request.json() as { email: string; language?: string };
 
     if (!email) {
       return NextResponse.json(
@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
     }
 
     const emailLower = email.toLowerCase();
+    const fallbackLanguage = (language === 'en' ? 'en' : 'fr') as 'en' | 'fr';
 
     // Si c'est un admin, connecter directement avec un cookie
     if (isAdmin(emailLower)) {
@@ -61,11 +62,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Envoyer l'email avec le lien d'accès existant
+    // Envoyer l'email avec le lien d'accès existant - utiliser la langue stockée si disponible, sinon le fallback
     if (process.env.RESEND_API_KEY) {
+      // Déterminer la langue : utiliser la langue stockée dans l'achat si disponible, sinon le fallback, sinon 'fr'
+      const storedLanguage = 'language' in purchase ? (purchase.language as string) : undefined;
+      const emailLanguage = (storedLanguage === 'en' ? 'en' : 'fr') as 'en' | 'fr';
       await sendAccessEmail({
         to: purchase.email,
         accessToken: purchase.accessToken,
+        language: emailLanguage || fallbackLanguage,
       });
     }
 
