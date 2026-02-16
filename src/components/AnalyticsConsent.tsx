@@ -2,7 +2,7 @@
 
 import Script from "next/script";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const GA_ID = "G-V148K86MM1";
 const CONSENT_COOKIE = "pwb_consent";
@@ -17,6 +17,14 @@ function getCookieValue(name: string): string | null {
 function setCookie(name: string, value: string, days: number) {
   const maxAge = days * 24 * 60 * 60;
   document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${maxAge}`;
+}
+
+function getGtag(): ((...args: unknown[]) => void) | null {
+  if (typeof window === "undefined") {
+    return null;
+  }
+  const gtag = (window as { gtag?: (...args: unknown[]) => void }).gtag;
+  return typeof gtag === "function" ? gtag : null;
 }
 
 export default function AnalyticsConsent() {
@@ -35,31 +43,69 @@ export default function AnalyticsConsent() {
   const handleAccept = () => {
     setCookie(CONSENT_COOKIE, "granted", 365);
     setConsent("granted");
+    const gtag = getGtag();
+    if (gtag) {
+      gtag("consent", "update", {
+        ad_storage: "granted",
+        ad_user_data: "granted",
+        ad_personalization: "granted",
+        analytics_storage: "granted",
+      });
+    }
   };
 
   const handleDecline = () => {
     setCookie(CONSENT_COOKIE, "denied", 365);
     setConsent("denied");
+    const gtag = getGtag();
+    if (gtag) {
+      gtag("consent", "update", {
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        analytics_storage: "denied",
+      });
+    }
   };
+
+  useEffect(() => {
+    if (consent === "unknown") {
+      return;
+    }
+    const gtag = getGtag();
+    if (!gtag) {
+      return;
+    }
+    gtag("consent", "update", {
+      ad_storage: consent,
+      ad_user_data: consent,
+      ad_personalization: consent,
+      analytics_storage: consent,
+    });
+  }, [consent]);
 
   return (
     <>
-      {consent === "granted" && (
-        <>
-          <Script
-            id="gtag-js"
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-            strategy="afterInteractive"
-          />
-          <Script id="gtag-init" strategy="afterInteractive">
-            {`window.dataLayer = window.dataLayer || [];
+      <>
+        <Script
+          id="gtag-js"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 window.gtag = gtag;
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: 'denied'
+});
 gtag('js', new Date());
-gtag('config', '${GA_ID}');`}
-          </Script>
-        </>
-      )}
+gtag('config', '${GA_ID}', { anonymize_ip: true });`}
+        </Script>
+      </>
 
       {consent === "unknown" && (
         <div className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-2xl rounded-xl border border-zinc-800 bg-zinc-900 p-4 shadow-lg">
