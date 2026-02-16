@@ -42,7 +42,42 @@ CHAQUE option du post DOIT AVOIR:
 * Du texte authentique directement postable sur Reddit
 
 === FORMAT DE SORTIE JSON STRICT ===
-Retourne UN JSON VALIDE avec structure : { "websiteAnalysis": {...}, "subreddits": [...], "redditPost": { "options": [...] }, "tacticalAdvice": {...}, "realisticEstimates": {...} }`;
+Retourne UN JSON VALIDE avec structure exacte :
+{
+  "websiteAnalysis": {
+    "coreProblem": "string",
+    "targetAudience": "string",
+    "maturityLevel": "string"
+  },
+  "subreddits": [
+    {
+      "name": "string (nom du subreddit sans le r/)",
+      "relevanceScore": number (1-5),
+      "moderationRisk": "Low" | "Medium" | "High",
+      "recommendedAngle": "string",
+      "explanation": "string"
+    }
+  ],
+  "redditPost": {
+    "options": [
+      {
+        "riskLevel": "Low" | "Medium" | "High",
+        "title": "string",
+        "body": "string (300-400 mots minimum)",
+        "explanation": "string",
+        "expectedEngagement": "string",
+        "bestSubreddits": ["string", "string"]
+      }
+    ]
+  },
+  "realisticEstimates": {
+    "clicksRange": "string",
+    "commentsRange": "string",
+    "worthIt": boolean,
+    "warning": "string"
+  }
+}`;
+
 }
 
 function getSystemPromptEN(): string {
@@ -77,7 +112,41 @@ EACH post option MUST HAVE:
 * Authentic text directly postable on Reddit
 
 === STRICT JSON OUTPUT FORMAT ===
-Return ONE VALID JSON with structure: { "websiteAnalysis": {...}, "subreddits": [...], "redditPost": { "options": [...] }, "tacticalAdvice": {...}, "realisticEstimates": {...} }`;
+Return ONE VALID JSON with exact structure:
+{
+  "websiteAnalysis": {
+    "coreProblem": "string",
+    "targetAudience": "string",
+    "maturityLevel": "string"
+  },
+  "subreddits": [
+    {
+      "name": "string (subreddit name without r/)",
+      "relevanceScore": number (1-5),
+      "moderationRisk": "Low" | "Medium" | "High",
+      "recommendedAngle": "string",
+      "explanation": "string"
+    }
+  ],
+  "redditPost": {
+    "options": [
+      {
+        "riskLevel": "Low" | "Medium" | "High",
+        "title": "string",
+        "body": "string (300-400 words minimum)",
+        "explanation": "string",
+        "expectedEngagement": "string",
+        "bestSubreddits": ["string", "string"]
+      }
+    ]
+  },
+  "realisticEstimates": {
+    "clicksRange": "string",
+    "commentsRange": "string",
+    "worthIt": boolean,
+    "warning": "string"
+  }
+}`;
 }
 
 export function getUserPrompt(

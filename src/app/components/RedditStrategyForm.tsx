@@ -104,6 +104,8 @@ export default function RedditStrategyForm({ onAnalysisComplete }: RedditStrateg
       }
 
       const data = await response.json();
+      console.log('[RedditStrategyForm] Données reçues:', data);
+      console.log('[RedditStrategyForm] Subreddits:', data.subreddits);
       setResult(data);
       onAnalysisComplete?.();
     } catch (err) {
@@ -314,42 +316,50 @@ export default function RedditStrategyForm({ onAnalysisComplete }: RedditStrateg
             <h2 className="text-lg font-medium text-zinc-100 mb-4">
               {tResults("subreddits")}
             </h2>
-            <div className="space-y-3">
-              {result.subreddits.map((sub, index) => {
-                const riskBadge = getRiskBadge(sub.moderationRisk);
-                return (
-                  <div
-                    key={index}
-                    className="p-4 rounded-lg bg-zinc-800/50 border border-zinc-800 hover:border-zinc-700 transition-colors"
-                  >
-                    <div className="flex flex-wrap items-center gap-2 mb-3">
-                      <h3 className="font-semibold text-orange-400 text-sm">
-                        r/{sub.name}
-                      </h3>
-                      <span
-                        className={`text-xs font-medium ${getScoreColor(
-                          sub.relevanceScore
-                        )}`}
-                      >
-                        {sub.relevanceScore}/5
-                      </span>
-                      <span
-                        className={`text-xs px-2 py-0.5 rounded font-medium flex items-center gap-1 ${riskBadge.class}`}
-                      >
-                        {riskBadge.icon}
-                        {riskBadge.label}
-                      </span>
+            {result.subreddits && result.subreddits.length > 0 ? (
+              <div className="space-y-3">
+                {result.subreddits.map((sub, index) => {
+                  const riskBadge = getRiskBadge(sub.moderationRisk);
+                  return (
+                    <div
+                      key={index}
+                      className="p-4 rounded-lg bg-zinc-800/50 border border-zinc-800 hover:border-zinc-700 transition-colors"
+                    >
+                      <div className="flex flex-wrap items-center gap-2 mb-3">
+                        <h3 className="font-semibold text-orange-400 text-sm">
+                          r/{sub.name}
+                        </h3>
+                        <span
+                          className={`text-xs font-medium ${getScoreColor(
+                            sub.relevanceScore
+                          )}`}
+                        >
+                          {sub.relevanceScore}/5
+                        </span>
+                        <span
+                          className={`text-xs px-2 py-0.5 rounded font-medium flex items-center gap-1 ${riskBadge.class}`}
+                        >
+                          {riskBadge.icon}
+                          {riskBadge.label}
+                        </span>
+                      </div>
+                      <p className="text-xs text-zinc-400 mb-2">
+                        <span className="text-zinc-300">{sub.recommendedAngle}</span>
+                      </p>
+                      <p className="text-xs text-zinc-500 leading-relaxed">
+                        {sub.explanation}
+                      </p>
                     </div>
-                    <p className="text-xs text-zinc-400 mb-2">
-                      <span className="text-zinc-300">{sub.recommendedAngle}</span>
-                    </p>
-                    <p className="text-xs text-zinc-500 leading-relaxed">
-                      {sub.explanation}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="p-4 rounded-lg bg-zinc-800/50 border border-zinc-800 text-center">
+                <p className="text-sm text-zinc-400">
+                  Aucun subreddit généré. Veuillez réessayer l&apos;analyse.
+                </p>
+              </div>
+            )}
           </section>
 
           {/* Posts Reddit prêts - 5 options */}
