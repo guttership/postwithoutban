@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { GeolocationDetector } from "@/components/GeolocationDetector";
+import AnalyticsConsent from "@/components/AnalyticsConsent";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
@@ -103,6 +104,7 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <GeolocationDetector />
+          <AnalyticsConsent />
           <div className="flex flex-col min-h-screen">
             <main className="flex-1">
               {children}

@@ -80,6 +80,12 @@
     "tagline": "Reddit posts that survive moderation.",
     "disclaimer": "Because Reddit hates your pitch."
   },
+  "consent": {
+    "title": "Cookies and analytics",
+    "message": "We use Google Analytics to measure traffic. You can accept or decline.",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
   "warning": {
     "title": "Important reminder",
     "message": "Reddit hates marketing. This tool helps you write authentic posts focused on sharing experience and asking for feedback."
@@ -118,7 +124,7 @@
       },
       "section5": {
         "title": "5. Cookies",
-        "content": "We use a cookie named 'locale' to remember your language choice. No tracking cookies are used."
+        "content": "We use a cookie named 'locale' to remember your language choice. If you accept, we use Google Analytics to measure traffic."
       }
     },
     "terms": {
